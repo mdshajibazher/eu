@@ -1,4 +1,5 @@
 <?php
+ob_start ();
 require('invoice.php');
 include '../classes/sold_product.php'; 
 include '../classes/product.php'; 
@@ -120,4 +121,5 @@ $y   += $size + 2;
 
 $pdf->totalAmountBox($sum, $discount, $payable);
 $pdf->Output();
+ob_end_flush();
 ?>

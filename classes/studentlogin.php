@@ -92,7 +92,7 @@
 				$statusUpdate = $this->db->update($updateQuery);
 				if($statusUpdate){
 					$_SESSION['activate'] = 'Successfully Activate the Account Please Login';
-					header('Location: login.php');
+					echo "<script>window.location = 'login.php';</script>";
 				}else{
 					$msg = "<span style='color: red'>Not Updated</span>";
 					return $msg;

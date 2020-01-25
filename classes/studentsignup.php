@@ -113,7 +113,7 @@ $message = '<table dir="ltr" style="font-family: Segoe UI Semibold,Arial,sans-se
       <tbody>
 
         <tr>
-              <td><img style="width: 500px" src="https://sapappu.com/euv2/img/banner.png" alt=""></td>
+              <td><img style="width: 500px" src="//bd.sapappu.com/img/banner.png" alt=""></td>
             </tr>
         <tr><td>Eu e-Canteen</td></tr>
       <tr><td style="padding:0;font-family: Segoe UI Light;font-size:41px;color:#2672ec">Signup Security code</td></tr>
@@ -141,7 +141,8 @@ $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 $headers .= 'From: <info@sapappu.com>' . "\r\n";
 
 mail($to,$subject,$message,$headers);
-header('Location:activate.php?sid='.$studentid.'&&email='.$email);
+echo "<script>window.location = 'activate.php?sid=".$studentid.'&&email='.$email."'</script>";
+
 
 
 				    }
