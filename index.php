@@ -30,12 +30,13 @@
                 <div class="card-block custom-card-block">
                     <h4 class="card-title"><?php echo $result['productname']; ?></h4>
                     <h4 class="card-text">Tk <?php echo $result['price']; ?></h4>
-                    <p><?php echo $fm->textShorten($result['description'],50); ?><br><a  href="#">Read More</a>.</p>
-                    <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
+                    <p><?php echo $fm->textShorten($result['description'],50); ?><br></p>
+                    <a class="badge badge-light" href="#">Details</a>
                 </div>
-                
-                
-          </div>
+              <div class="link">
+                    <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
+                    </div>
+               </div>
 
          <?php } }  ?>
 
@@ -138,7 +139,7 @@
         $nameOfDay = date('l', strtotime($date_with_day_name));
         $_SESSION['custom_order_date'] = $date." ".$nameOfDay;
         $_SESSION['serve_hour'] = $serve_hour;
-        echo "<script>window.location = '/'; </script>";
+        echo "<script>window.location = ''; </script>";
       }
   }
 

@@ -223,11 +223,10 @@ Product Item
 }
 #msg{
 text-align: right;
-    font-size: 24px;
+    font-size: 14px;
     color: red;
     margin: 0;
     clear: both;
-    font-size: 24px;
 }
 
 .categories{
@@ -246,34 +245,62 @@ text-align: right;
     width: 24%;
     position: relative;
     height: 198px;
+    overflow: hidden;
+    border-radius: 5px;
     
 }
 .custom-card-block{
     position: absolute;
-    top: 0;
+    top: -1000px;
     width: 100%;
+    margin: 0px;
+    border-radius: 5px;
     left: 0;
-    height: 190px;
-    padding: 16px 7px;
+    height: 196px;
+    padding: 15px 8px;
+    background: rgba(111, 30, 81,0.8);
+    -webkit-transition: .35s ease;
+    -o-transition: .35s ease;
+    transition: .35s ease;
 }
 
+
+.custom-card .link{
+  position: absolute;
+  bottom: -500px;
+  width: 100%;
+  text-align: center;
+  -webkit-transition: .4s ease .7s;
+  -o-transition: .4s ease .7s;
+  transition: .4s ease .7s;
+
+}
+.custom-card .link a:hover{
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid #ffffff;
+
+
+}
+
+
 h4.card-title{
-      background: rgba(255, 255, 255, .7);
-    color: #000;
+    color: #ffffff;
     text-transform: uppercase;
     padding: 3px 0;
     font-size: 16px;
     border-radius: 5px;
     margin: 0 5px;
     font-weight: bold;
+    width: 72%;
 }
 h4.card-text{
     background: rgba(255, 0, 0, .7);
     padding: 7px 5px;
     border-radius: 3px;
     position: absolute;
-    bottom: 17px;
-    left: 10px;
+    top: 17px;
+    right: 10px;
     margin-bottom: 1px;
     color: #fff;
     font-size: 21px;
@@ -285,9 +312,11 @@ h4.card-text{
 
  .card-block p{
     color: #fff;
-    font-size: 14px;
-    margin: 15px 0;
- }
+    font-size: 12px;
+    margin: 5px 0;
+    width: 73%;
+    text-align: justify;
+  text-justify: inter-word; }
 
 .card-text{
     font-size: 20px;
@@ -307,6 +336,17 @@ span.total-cart{
     color: #00b894
 }
 
+.custom-card:hover .custom-card-block{
+  display: block;
+  top: 0;
+
+}
+.custom-card:hover .link{
+   bottom: 10%;
+   -webkit-transition: .35s ease;
+   -o-transition: .35s ease;
+   transition: .35s ease;
+}
 /*-----------------------------------------
 Categories Sidebar
 --------------------------------------------*/
@@ -496,7 +536,7 @@ Chekout Page
 }
 .cartpage h2 {
   border-bottom: 1px solid #ddd;
-  font-size: 26px;
+  font-size: 22px;
   margin-bottom: 20px;
   padding: 30px 0;
   text-align: center;
@@ -505,13 +545,13 @@ Chekout Page
   border: 1px solid #fff;
   margin-bottom: 12px;
   width: 100%;
-  font-size: 23px;
+  font-size: 18px;
     font-family: courier
 }
 .tblone th {
   background: #666 none repeat scroll 0 0;
   color: #fff;
-  font-size: 20px;
+  font-size: 17px;
   padding: 5px 8px;
   text-align: center;
 }
@@ -540,13 +580,12 @@ table.tblone a {
 }
 table.tblone a:hover{color: #000;}
 table.tblone img {
-  height: 90px;
-  width: 90px;
+  height: 30px;
 }
 .amount-table{
   float:right;
   text-align:left;
-  font-size: 25px;
+  font-size: 18px;
   font-family: courier;
 }
 .shopping {
@@ -558,31 +597,14 @@ table.tblone img {
   width: 610px;
 }
 
-.shopleft a,.shopright a{
-  background: red;
-  padding: 20px 60px;
-  border: 1px solid #ddd;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: bold;
-}
+
 .shopright a{
   background: #4cd137;
 }
 .shopright {
   margin: 0 40px;
 }
-.order-button{
-    background: green;
-    color: #ffffff;
-    border: none;
-    padding: 11px 0;
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    width: 210px;
 
-}
 
 /*------------------------------
 Confirmation page
@@ -640,9 +662,9 @@ p.page_title{
     float: right;
     overflow: hidden;
     clear: both;
-    font-size: 26px;
-    width: 436px;
-    height: 53px;
+    font-size: 15px;
+    width: 245px;
+    height: 29px;
     text-align: center;
     border: 1px solid #000000;
     border-radius: 5px;

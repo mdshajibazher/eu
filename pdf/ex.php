@@ -69,14 +69,14 @@ $cols=array( "Sl."    => 23,
              "QUANTITE"     => 22,
              "PRICE"      => 26,
              "TOTAL" => 30,
-             "CMNT"          => 11 );
+             "REF"          => 11 );
 $pdf->addCols( $cols);
 $cols=array( "Sl."    => "L",
              "PRODUCT"  => "L",
              "QUANTITE"     => "C",
              "PRICE"      => "R",
              "TOTAL" => "R",
-             "CMNT"          => "C" );
+             "REF"          => "C" );
 $pdf->addLineFormat( $cols);
 $pdf->addLineFormat($cols);
 
@@ -107,7 +107,7 @@ $line = array( "Sl."    => $j,
                "QUANTITE"     => $product_qty,
                "PRICE"      => $price,
                "TOTAL" => $total_price,
-               "CMNT"          => "0" );
+               "REF"          => "0" );
 $size = $pdf->addLine( $y, $line );
 $y   += $size + 2;
 

@@ -34,8 +34,8 @@
             
             <img src="img/banner.png" width="100%">
             <span style="color:red"><?php if(isset($loginChk)){ echo $loginChk; } ?></span>
-            <input type="text" placeholder="email/studentid" name="id" value="<?php if(isset($_POST['id'])){ echo $_POST['id']; } ?>" />
-            <input type="password" placeholder="password" name="pass" value="" />
+            <input type="text" placeholder="email/studentid" name="id" value="<?php if(isset($_POST['id'])){ echo $_POST['id']; }else{ echo "user"; } ?>" />
+            <input type="password" placeholder="password" name="pass" value="user" />
             <button>login</button>
             <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
           </form>

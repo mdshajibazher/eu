@@ -37,6 +37,14 @@
 			$result = $this->db->select($query);
 			return $result;
 		}
+
+		public function getDiscount(){
+			$query = "SELECT discount FROM general_information";
+			$result = $this->db->select($query);
+			while ($getCurrentDisocunt = $result->fetch_assoc()) {
+                return  $getCurrentDisocunt['discount'];
+            }
+		}
 		public function orderCheck($oid,$sid){
 			$query = "SELECT * FROM cart_table WHERE order_id='$oid' AND session_id='$sid'";
 			$result = $this->db->select($query);

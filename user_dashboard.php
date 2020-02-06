@@ -84,7 +84,7 @@
       <td><?php echo $result['payment_mode'] == 1  ? "Cash On Delivery" : "Credit/Debit Card" ; ?></td>
       <td><?php echo $result['payment_status'] == 0  ? "UNPAID" : "PAID" ; ?></td>
       <td><?php echo $result['ip_address']; ?></td>
-      <td><a href="/pdf/ex.php?order_id=<?php echo $result['order_id']; ?>&session_id=<?php echo $result['session_id']; ?>">Invoice</a></td>
+      <td><a href="pdf/ex.php?order_id=<?php echo $result['order_id']; ?>&session_id=<?php echo $result['session_id']; ?>">Invoice</a></td>
 
    </tr>
     <?php } } ?>

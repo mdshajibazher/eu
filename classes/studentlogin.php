@@ -47,7 +47,7 @@
 						Session::set("studentemail", $value['email']);
 						Session::set("id",$value['id']);
 						Session::set("name", $value['name']);
-						echo "<script>window.location = '/';</script>";
+						echo "<script>window.location = '';</script>";
 					}
 				}
 			}elseif(isInteger($id) == NULL){
@@ -66,7 +66,7 @@
 						Session::set("studentemail", $value['email']);
 						Session::set("id",$value['id']);
 						Session::set("name", $value['name']);
-						echo "<script>window.location = '/';</script>";
+						echo "<script>window.location = '';</script>";
 					}
 				}
 			}
@@ -91,8 +91,14 @@
 				$updateQuery = "UPDATE students_table SET active_status = 1 WHERE student_id='$id'";
 				$statusUpdate = $this->db->update($updateQuery);
 				if($statusUpdate){
-					$_SESSION['activate'] = 'Successfully Activate the Account Please Login';
-					echo "<script>window.location = 'login.php';</script>";
+						$query = "SELECT * FROM students_table WHERE student_id='$id'";
+				        $result = $this->db->select($query);
+				        $value = $result->fetch_assoc();
+					    Session::set("studentlogin", true);
+						Session::set("studentemail", $value['email']);
+						Session::set("id",$value['id']);
+						Session::set("name", $value['name']);
+						echo "<script>window.location = '';</script>";
 				}else{
 					$msg = "<span style='color: red'>Not Updated</span>";
 					return $msg;

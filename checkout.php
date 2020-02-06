@@ -91,8 +91,7 @@ if(isset($_POST['order_submit'])){
                     $sess_id = session_id();
                     $orderId = $_GET['order_id'];
                     $getcartInf= $si->getCartInformation($orderId);
-
-
+                    $getDisocunt = $si->getDiscount();
                     if($getcartInf){
                       $j=0;
                       $sum = 0;
@@ -107,7 +106,7 @@ if(isset($_POST['order_submit'])){
                     $sub_total = $price*$product_qty;
 
                     $sum = $sum+$sub_total;
-                    $discount = $sum*.1;
+                    $discount = $sum*($getDisocunt/100);
                     $total_value = $sum-$discount;
                
                ?>
@@ -162,10 +161,10 @@ if(isset($_POST['order_submit'])){
           </div>
           <div class="shopping">
             <div class="shopleft">
-              <a class="cancel-button" href="index.php">Cancel</a>
+              <a class="btn btn-danger" href="index.php">Cancel Order</a>
             </div>
             <div class="shopright" style="text-align: right">
-              <input class="order-button" type="submit" name="order_submit">
+              <input class="btn btn-success" type="submit" name="order_submit" value="Confirm">
               
             </div>
             </form>
