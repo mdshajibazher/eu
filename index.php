@@ -28,10 +28,14 @@
           <div class="custom-card">
               <img class="card-img-top" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
                 <div class="card-block custom-card-block">
-                    <h4 class="card-title"><?php echo $result['productname']; ?></h4>
+                    
                     <h4 class="card-text">Tk <?php echo $result['price']; ?></h4>
-                    <p><?php echo $fm->textShorten($result['description'],50); ?><br></p>
-                    <a class="badge badge-light" href="#">Details</a>
+                    <h4 class="product_heading"><?php echo $result['productname']; ?></h4>
+                    <p><?php echo $fm->textShorten($result['description'],55); ?><a class="btn btn-link"href="#">Details</a></p>
+                    
+                </div>
+                <div class="product-title">
+                  <h4 class="card-title"><?php echo $result['productname']; ?></h4>
                 </div>
               <div class="link">
                     <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>

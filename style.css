@@ -62,7 +62,7 @@ body{
     text-transform: uppercase;
 }
 .float-information {
-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
     text-orientation: mixed;
     position: fixed;
     top: 50%;
@@ -229,8 +229,11 @@ text-align: right;
     clear: both;
 }
 
-.categories{
-
+.product-title{
+  position: absolute;
+  top: 10%;
+  width: 94%;
+  text-align: center;
 }
 .show-cart li {
   display: flex;
@@ -252,13 +255,13 @@ text-align: right;
 .custom-card-block{
     position: absolute;
     top: -1000px;
-    width: 100%;
+    width: 102%;
     margin: 0px;
     border-radius: 5px;
     left: 0;
     height: 196px;
     padding: 15px 8px;
-    background: rgba(111, 30, 81,0.8);
+    background: rgba(111, 30, 81,0.9);
     -webkit-transition: .35s ease;
     -o-transition: .35s ease;
     transition: .35s ease;
@@ -267,12 +270,9 @@ text-align: right;
 
 .custom-card .link{
   position: absolute;
-  bottom: -500px;
+  bottom: 10%;
   width: 100%;
   text-align: center;
-  -webkit-transition: .4s ease .7s;
-  -o-transition: .4s ease .7s;
-  transition: .4s ease .7s;
 
 }
 .custom-card .link a:hover{
@@ -290,9 +290,8 @@ h4.card-title{
     padding: 3px 0;
     font-size: 16px;
     border-radius: 5px;
-    margin: 0 5px;
     font-weight: bold;
-    width: 72%;
+    background: rgba(25, 42, 86,0.8)
 }
 h4.card-text{
     background: rgba(255, 0, 0, .7);
@@ -315,12 +314,12 @@ h4.card-text{
     font-size: 12px;
     margin: 5px 0;
     width: 73%;
-    text-align: justify;
-  text-justify: inter-word; }
+    text-align: left;
+ }
 
 .card-text{
     font-size: 20px;
-    font-weight: bold
+    font-weight: bold;
     text-transform: uppercase;
 }
 .btn-read-more{
@@ -341,12 +340,16 @@ span.total-cart{
   top: 0;
 
 }
-.custom-card:hover .link{
-   bottom: 10%;
-   -webkit-transition: .35s ease;
-   -o-transition: .35s ease;
-   transition: .35s ease;
+.product_heading{
+  color: #fff;
+  margin: 0;
+  text-align: left;
 }
+.custom-card:hover h4.card-title{
+  display: none;
+
+}
+
 /*-----------------------------------------
 Categories Sidebar
 --------------------------------------------*/

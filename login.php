@@ -28,7 +28,7 @@
       <div class="login-page">
         <div class="form">
           <form class="login-form" method="POST" action="">
-        
+            
             <h3>Student Login</h3>
             <p style="color: green"><?php if(isset($_SESSION['activate'])){ echo $_SESSION['activate']; } ?></p>
             
@@ -39,6 +39,7 @@
             <button>login</button>
             <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
           </form>
+          <a class="admin_link" href="#">Admin Login-&gt;</a>
         </div>
       </div>
 

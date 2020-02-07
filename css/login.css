@@ -94,3 +94,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+.admin_link{
+   float:right;color: #000;
+    font-weight: bold;writing-mode: vertical-lr;
+    text-orientation: mixed;
+    position: absolute;
+    top: 15%;right: 10px;
+    margin-top: -40px
+}

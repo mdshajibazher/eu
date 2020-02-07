@@ -26,7 +26,7 @@
 			$adm_User = $user;
 			$adm_Pass = $pass;
 			if(empty($adm_User) || empty($adm_Pass)){
-				$loginmsg = "Username & Password Must Not be empty";
+				$loginmsg = '<div class="alert alert-danger">Field Must Not be empty</div>';
 				return $loginmsg;
 			} else{
 				$query = "SELECT * FROM tbl_admin WHERE adminUser='$adm_User' AND adminPass='$adm_Pass'";
@@ -39,7 +39,7 @@
 					Session::set("adminName", $value['adminName']);
 					header('Location: index.php');;
 				} else{
-					$loginmsg = "Invalid Username & Password";
+					$loginmsg = '<div class="alert alert-danger">Invalid Username & Password</div>';
 					return $loginmsg;
 				}
 			}

@@ -137,7 +137,7 @@ if(isset($_POST['order_submit'])){
                 <td>TK. <?php echo  $sum ?></td>
               </tr>
               <tr>
-                <th>Discount : 10%  </th>
+                <th>Discount : <?php echo $getDisocunt ?>%  </th>
                 <td>Tk - <?php echo  $discount ?></td>
               </tr>
               <tr>

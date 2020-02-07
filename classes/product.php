@@ -46,7 +46,7 @@
 
              }
              if (empty($file_name)) {
-		         $err['image'] = "<span class='error'>Please Select any Image !</span>";
+		         $err['image'] = "<p style='color: red'>*Please Select any Image !</p>";
 		    }elseif ($file_size >1048567) {
 		         $err['image'] = "<span class='error'>Image Size should be less then 1MB! </span>";
 		    } elseif (in_array($file_ext, $permited) === false) {
