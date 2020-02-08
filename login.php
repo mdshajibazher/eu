@@ -39,7 +39,7 @@
             <button>login</button>
             <p class="message">Not registered? <a href="signup.php">Create an account</a></p>
           </form>
-          <a class="admin_link" href="#">Admin Login-&gt;</a>
+          <a class="admin_link" href="admin">Admin Login</a>
         </div>
       </div>
 

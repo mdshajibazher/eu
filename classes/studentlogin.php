@@ -48,6 +48,7 @@
 						Session::set("id",$value['id']);
 						Session::set("name", $value['name']);
 						echo "<script>window.location = '';</script>";
+						die();
 					}
 				}
 			}elseif(isInteger($id) == NULL){
@@ -67,6 +68,7 @@
 						Session::set("id",$value['id']);
 						Session::set("name", $value['name']);
 						echo "<script>window.location = '';</script>";
+						die();
 					}
 				}
 			}

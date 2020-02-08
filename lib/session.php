@@ -48,6 +48,7 @@ class Session{
    self::destroy();
 
    header("Location:login.php");
+   die();
 
   }
 
@@ -60,8 +61,7 @@ class Session{
   self::init();
 
   if (self::get("adminlogin")== true) {
-
-   header("Location:index.php");
+        header("Location:index.php");
 
   }
 
@@ -73,7 +73,7 @@ class Session{
 
   session_destroy();
 
-  echo "<script>window.location ='/login.php';</script>";
+  echo "<script>window.location ='login.php';</script>";
 
  }
 

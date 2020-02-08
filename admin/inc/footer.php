@@ -14,8 +14,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- bs-custom-file-input -->
@@ -24,6 +23,11 @@
 <script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <!-- Select 2 Js -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
+<!-- Jquery Datatable-->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<!-- Datatable Bootstrap -->
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!--  -->
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -48,8 +52,25 @@ $(document).ready(function () {
       theme: 'bootstrap4'
     })
 
+    //Datatable
+    $("#example1").DataTable();
+
+
+   $('#pd-img').click(function(){
+      $('#exising_image').hide();
+   });
+
+
+
+
+
+
 
   });
 </script>
 </body>
 </html>
+<?php 
+
+  ob_end_flush();
+ ?>

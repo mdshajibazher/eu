@@ -16,6 +16,7 @@
 
 		public function productInsert($post, $file){
 			$productName  = $this->fm->validation($post['productname']);
+			$sku = preg_replace('/\s+/', '', $productName);
 			$categoryId  = $post['categoryid'];
 			$des = $this->fm->validation($post['description']);
 			$description = str_replace("'", "", $des);
@@ -35,45 +36,45 @@
 
 
 		    if($productName == NULL){
-                    $err['product_name'] = '<p style="color: red;">*ProductName field Must Not be empty </p>';
+                    $err['product_name'] = 'ProductName field Must Not be empty';
 
              }
              if($categoryId == NULL){
-             		$err['categoryId'] = '<p style="color: red">*Please Select A Category</p>';
+             		$err['categoryId'] = 'Please Select A Category';
              }
             if($description == NULL){
-                    $err['description'] = '<p style="color: red">*Product Description field Must Not be empty</p>';
+                    $err['description'] = 'Product Description field Must Not be empty';
 
              }
-             if (empty($file_name)) {
-		         $err['image'] = "<p style='color: red'>*Please Select any Image !</p>";
+            if (empty($file_name)) {
+		         $err['image'] = "Please Select any Image !";
 		    }elseif ($file_size >1048567) {
 		         $err['image'] = "<span class='error'>Image Size should be less then 1MB! </span>";
 		    } elseif (in_array($file_ext, $permited) === false) {
-			     $err['image'] = "<span class='error'>You can upload only:-".implode(', ', $permited)."</span>";
+			     $err['image'] = "You can upload only:-".implode(', ', $permited);
 		    }
              
               if($price == NULL){
-                    $err['price'] = '<p style="color: red">*Product Price field Must Not be empty</p>';
+                    $err['price'] = 'Product Price field Must Not be empty';
              }
              if($type == NULL){
-                    $err['type'] = '<p style="color: red">*Please Select A product Type </p>';
+                    $err['type'] = 'Please Select A product Type';
              }
 
    if(count($err)==NULL){
 
-		    	  
+
 			    move_uploaded_file($file_temp, $uploaded_image);
-			    $query = "INSERT INTO product_table(productname,categoryid,description,price,image,type) VALUES('$productName','$categoryId','$description','$price','$uploaded_image','$type')";
+			    $query = "INSERT INTO product_table(productname,sku,categoryid,description,price,image,type) VALUES('$productName','$sku','$categoryId','$description','$price','$uploaded_image','$type')";
 			    $inserted_rows = $this->db->insert($query);
 
 				    if ($inserted_rows) {
-				        echo "<span class='success'>Product Inserted Successfully.
-				     </span>";
-				     echo 	"<script>window.location  = 'productlist.php'; </script>";
+				        $err['success'] = "success";
+				        header('Refresh: 5; url=product-list.php');
+
 				    }
 				    else {
-				        echo "<span class='error'>Not Inserted !</span>";
+				       $err['error'] = "Error Product not inserted";
 				    }
 		     
 
@@ -85,6 +86,120 @@
   
 		}
 
+
+
+	public function ProductEdit($post, $file, $id){
+
+			$err = array();
+			$productName  = $this->fm->validation($post['productname']);
+			$sku = preg_replace('/\s+/', '', $productName);
+			$categoryId  = $post['categoryid'];
+			$des = $this->fm->validation($post['description']);
+			$description = str_replace("'", "", $des);
+			$price = $this->fm->validation($post['price']);
+			$type        = $this->fm->validation($post['type']);
+
+			if($file['image']['name'] != null && $file['image']['size'] > 0 ) :
+
+		    $permited    = array('jpg', 'jpeg', 'png', 'gif');
+		    $file_name   = $file['image']['name'];
+		    $file_size   = $file['image']['size'];
+		    $file_temp   = $file['image']['tmp_name'];
+
+		    $div = explode('.', $file_name);
+		    $file_ext = strtolower(end($div));
+		    $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
+		    $uploaded_image = "uploads/".$unique_image;
+
+
+
+            if (empty($file_name)) {
+		         $err['image'] = "Please Select any Image !";
+		    }elseif ($file_size >1048567) {
+		         $err['image'] = "Image Size should be less then 1MB!";
+		    } elseif (in_array($file_ext, $permited) === false) {
+			     $err['image'] = "You can upload only:-".implode(', ', $permited);
+		    }
+
+
+		    endif;
+
+		    
+
+
+		    if($productName == NULL){
+                    $err['product_name'] = 'ProductName field Must Not be empty';
+
+             }
+             if($categoryId == NULL){
+             		$err['categoryId'] = 'Please Select A Category';
+             }
+            if($description == NULL){
+                    $err['description'] = 'Product Description field Must Not be empty';
+
+             }
+             
+              if($price == NULL){
+                    $err['price'] = 'Product Price field Must Not be empty';
+             }
+             if($type == NULL){
+                    $err['type'] = 'Please Select A product Type';
+             }
+
+   if(count($err)==NULL){
+
+   				if($file['image']['name'] == null && $file['image']['size'] == 0 ) :
+   						 $query = "UPDATE product_table SET productname='$productName',sku='$sku',categoryid='$categoryId',description='$description',price='$price',type='$type' WHERE productid='$id'";
+			    
+			    else:
+
+
+			    move_uploaded_file($file_temp, $uploaded_image);
+			    $query = "UPDATE product_table SET productname='$productName',sku='$sku',categoryid='$categoryId',description='$description',price='$price',image='$uploaded_image',type='$type' WHERE productid='$id'";
+
+
+			    endif;
+
+
+			    $updated_rows = $this->db->update($query);
+
+				    if($updated_rows) {
+				        $err['success'] = "success";
+				        header('Refresh: 5; url=product-list.php');
+
+				    }
+				    else {
+				       $err['error'] = "Error Product not inserted";
+				    }
+		     
+
+
+		    }
+
+
+		    return $err;
+	}
+
+	public function getSpecificProduct($id){
+			$query = "SELECT product_table.*, category_table.* FROM product_table INNER JOIN category_table ON product_table.categoryid=category_table.id WHERE productid='$id'";
+			$result = $this->db->select($query);
+			return $result;
+	}
+
+	public function delProductById($id){
+			$err = array();
+			$query = "DELETE FROM product_table WHERE productid='$id'";
+			$deleted = $this->db->delete($query);
+			var_dump($deleted);
+
+			if($deleted) {
+				      $err['success'] = "success";
+		    }
+			else {
+		         $err['error'] = "Error Product not inserted";
+		   }
+		   return $err;
+		}
 
 	public function getCategoryWiseProduct($id){
 			$query = "SELECT product_table.*, category_table.catname FROM product_table INNER JOIN category_table ON product_table.categoryid=category_table.id WHERE categoryid='$id'  ORDER BY product_table.productid DESC";

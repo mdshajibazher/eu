@@ -158,7 +158,7 @@
       <form class="dateinput_form" action="" method="POST">
   <div class="form-group" id="orderDate">
     <label for="exampleInputEmail1">Order Date</label>
-    <input type="text" class="form-control" value="" name="datepicker" placeholder="Enter Date Of Order" data-date-start-date="0d" readonly>
+    <input type="text" class="form-control" value="<?php if(isset($date)){ echo $date; } ?>" name="datepicker" placeholder="Enter Date Of Order" data-date-start-date="0d" readonly>
     <small class="form-text" style="color: red">
       <?php if(isset($err1)){
         echo $err1;

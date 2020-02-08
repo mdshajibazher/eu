@@ -15,7 +15,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Admin | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -43,7 +43,7 @@
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="username" name="adminUser" value="<?php if(isset($_POST['adminUser'])){ echo $_POST['adminUser']; } ?>"> 
+          <input type="text" class="form-control" placeholder="username" name="adminUser" value="<?php if(isset($_POST['adminUser'])){ echo $_POST['adminUser']; }else{ echo "admin"; } ?>"> 
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password" name="adminPass">
+          <input type="password" class="form-control" placeholder="Password" name="adminPass" value="123">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -77,9 +77,7 @@
 
 
 
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
+      
     </div>
     <!-- /.login-card-body -->
   </div>

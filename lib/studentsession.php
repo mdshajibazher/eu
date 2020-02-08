@@ -48,6 +48,7 @@ class Session{
    self::destroy();
 
    header("Location:login.php");
+   die();
 
   }
 
