@@ -27,7 +27,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item ">
-            <a href="#" class="nav-link">
+            <a href="index.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -54,6 +54,29 @@
                 <a href="product-list.php" class="nav-link">
                   <i class="fa fa-list-ul nav-icon"></i>
                   <p>Product List</p>
+                </a>
+              </li>
+              
+            </ul>
+            
+                      <li class="nav-item has-treeview">
+            <a href="index.php" class="nav-link">
+              <i class="nav-icon fa fa-tag"></i>
+              <p>Category</p>
+               <i class="right fas fa-angle-left"></i>
+            </a>
+            
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="add-category.php" class="nav-link">
+                  <i class="fa fa-plus nav-icon"></i>
+                  <p>Create Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="category-list.php" class="nav-link">
+                  <i class="fa fa-list-ul nav-icon"></i>
+                  <p>Category List</p>
                 </a>
               </li>
               

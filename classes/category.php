@@ -11,21 +11,22 @@
 		}
 
 		public function catInsert($catName){
+		    $err = array();
 			$catName = $this->fm->validation($catName);
 			if(empty($catName)){
-				$loginmsg = "<span style='color: red'>Category Name Should Not be Empty<span>";
-				return $loginmsg;
+				 $err['empty'] = "Category Name Should Not be Empty";
 			}else{
 				$query = "INSERT INTO category_table(catname) VALUES('$catName')";
 				$catInsert = $this->db->insert($query);
 				if($catInsert){
-					$msg = "<span style='color: green'>Category Inserted Successful</span>";
-					return $msg;
+					$err['success'] = "success";
+					header('Refresh: 3; url=category-list.php');
 				}else{
-					$msg = "<span style='color: red'>Category Not Inserted</span>";
-					return $msg;
+					$err['error'] = "Error";
 				}
 			}
+			
+			return $err;
 
 		}
 
@@ -45,42 +46,43 @@
 		}
 
 		public function getCatById($id){
-			$query = "SELECT * FROM category_table WHERE catid='$id'";
+			$query = "SELECT * FROM category_table WHERE id='$id'";
 			$result = $this->db->select($query);
-
 			return $result;
 		}
 
 		public function delCatById($id){
-			$query = "DELETE  FROM category_table WHERE catid='$id'";
+		    $err = array();
+			$query = "DELETE  FROM category_table WHERE id='$id'";
 			$result = $this->db->delete($query);
-
-			
 				if($result){
-					$msg = "<span style='color: green'>Category Deleted Successful</span>";
-					return $msg;
+					$err['success'] = "success";
+					header('Refresh: 3; url=category-list.php');
 				}else{
-					$msg = "<span style='color: red'>Category Not Deleted</span>";
-					return $msg;
+					$err['error'] = "error";
 				}
+				
+				return $err;
 		}
 
 		public function catUpdate($catName, $id){
+		    $err = array();
 			$catName = $this->fm->validation($catName);
+			
 			if(empty($catName)){
-				$loginmsg = "<span style='color: red'>Category Name Should Not be Empty<span>";
-				return $loginmsg;
+				 $err['empty'] = "Category Name Should Not be Empty";
 			}else{
-				$query = "UPDATE tbl_cat SET catname ='$catName' WHERE catid='$id'";
+				$query = "UPDATE category_table SET catname ='$catName' WHERE id='$id'";
 				$catUpdate = $this->db->update($query);
 				if($catUpdate){
-					$msg = "<span style='color: green'>Category Updated Successful</span>";
-					return $msg;
+					$err['success'] = "success";
+					header('Refresh: 3; url=category-list.php');
 				}else{
-					$msg = "<span style='color: red'>Category Not Updated</span>";
-					return $msg;
+				    $err['error'] = "error";
 				}
 			}
+			
+			return $err;
 
 		}
 
