@@ -38,7 +38,7 @@
 
           <li class="nav-item has-treeview">
             <a href="index.php" class="nav-link">
-              <i class="nav-icon fa fa-shopping-cart"></i>
+              <i class="nav-icon fa fa-utensils"></i>
               <p>Product</p>
                <i class="right fas fa-angle-left"></i>
             </a>
@@ -82,6 +82,25 @@
               
             </ul>
           </li>
+          
+        <li class="nav-item has-treeview">
+            <a href="index.php" class="nav-link">
+              <i class="nav-icon fa fa-shopping-cart"></i>
+              <p>Orders</p>
+               <i class="right fas fa-angle-left"></i>
+            </a>
+            
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="order-list.php" class="nav-link">
+                  <i class="fa fa-list-ul nav-icon"></i>
+                  <p>Order List</p>
+                </a>
+              </li>
+              
+            </ul>
+          
+          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

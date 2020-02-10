@@ -218,7 +218,7 @@
 			$result = $this->db->select($query);
 			return $result;
 	}
-
+    
 
 	public function getCatName($id){
 		$query = "SELECT * FROM category_table WHERE id='$id'";

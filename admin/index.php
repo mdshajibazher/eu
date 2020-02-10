@@ -4,6 +4,8 @@
   
 <?php include('inc/top_nav.php'); ?>
 <?php include('inc/sidebar.php'); ?>
+<?php include  '../classes/Order.php'; ?>
+<?php include  '../classes/Students.php'; ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -14,9 +16,15 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-
-                <p>New Orders</p>
+                  
+                <?php
+                    $order = new Order;
+                    $getTotalOrder = $order->getTotalOrder();
+                
+                ?>
+                <h3><?php echo $getTotalOrder->num_rows; ?></h3>
+                
+                <p>Total Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -29,9 +37,12 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                 <?php
+                     $getPendingOrder = $order->getPendingOrder();
+                ?>
+                <h3><?php echo $getPendingOrder->num_rows; ?></h3>
 
-                <p>Bounce Rate</p>
+                <p>Pending Order</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -44,9 +55,15 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                  
+                <?php 
+                    $st = new Students;
+                    $getTotalStudents = $st->getTotalStudents;
+                    var_dump($getTotalStudents);
+                ?>
+                <h3><?php echo $getTotalStudents->num_rows; ?></h3>
 
-                <p>User Registrations</p>
+                <p>Total Students</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -59,9 +76,13 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                  
+                <?php
+                    $getCancelledOrder  = $order->getCancelledOrder();
+                ?>
+                <h3><?php echo $getCancelledOrder->num_rows; ?></h3>
 
-                <p>Unique Visitors</p>
+                <p>Cancelled Order</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
