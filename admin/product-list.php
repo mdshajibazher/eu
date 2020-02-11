@@ -4,16 +4,12 @@
 
 <?php include('inc/top_nav.php'); ?>
 <?php include('inc/sidebar.php'); ?>
-<?php include  '../classes/brand.php'; ?>
 <?php include  '../classes/product.php'; ?>
 <?php include  '../classes/category.php'; ?>
 
 <?php 
   $pd = new Product;
-  if(isset($_POST['submit'])){
-        $insertProduct = $pd->productInsert($_POST, $_FILES);
 
-    }
 
   $fm = new Format;
 
@@ -121,7 +117,7 @@
                             <td><img height="50px" src="<?php echo $result['image'];  ?>" alt=""></td>
                             <td><?php echo $result['type'];  ?></td>
                             <td><?php echo $result['time'];  ?></td>
-                            <td><a href="edit-product.php?id=<?php echo $result['productid']; ?>">Edit</a> || <a onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['productid']; ?>">Delete</a></td>
+                            <td><a class="btn btn-primary btn-sm" href="edit-product.php?id=<?php echo $result['productid']; ?>">Edit</a>&nbsp;<a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['productid']; ?>">Delete</a></td>
                           </tr>
        
 

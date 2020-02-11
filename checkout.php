@@ -152,8 +152,16 @@ if(isset($_POST['order_submit'])){
              <form action="" method="POST">
              <select id="payment_mod" name="payment_mod">
                       <option value="0">-----Select Payment Method-----</option>
-                      <option value="1">Cash On Delivery</option>
-                      <option value="2">Credit/Debit Card</option>
+                      <?php 
+                        $getPaymentMode = $pd->getPaymentMode();
+                        if($getPaymentMode) :
+                           while($payment_result = $getPaymentMode->fetch_assoc()) :
+                        
+
+                       ?>
+                      <option value="<?php echo $payment_result['id'] ?>"><?php echo $payment_result['mode'] ?></option>
+
+                      <?php endwhile; endif;  ?>
               </select>
               <p id="msg"></p>
               <input type="hidden" name="order_id" value="<?php echo $_GET['order_id']; ?>">

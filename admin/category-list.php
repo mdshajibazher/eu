@@ -102,7 +102,7 @@
                             <td><?php echo $i;  ?></td>
                             <td>#<?php echo $result['id'];  ?></td>
                             <td><?php echo $result['catname'];  ?></td>
-                            <td><a href="edit-category.php?id=<?php echo $result['id']; ?>">Edit</a> || <a onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['id']; ?>">Delete</a></td>
+                            <td><a class="btn btn-primary btn-sm" href="edit-category.php?id=<?php echo $result['id']; ?>">Edit</a> | <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['id']; ?>">Delete</a></td>
                           </tr>
        
 

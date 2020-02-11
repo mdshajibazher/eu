@@ -167,10 +167,18 @@
   <div class="form-group">
     <label for="exampleFormControlSelect2">Select Serve Hour</label>
     <select class="form-control" id="exampleFormControlSelect2" name="serve_hour">
-      <option value="0">-----select serve hour-----</option>
-      <option value="1">Lunch</option>
-      <option value="2">Breakfast</option>
-      <option value="3">Others</option>
+      <option value="0">-----select Serve Hour-----</option>
+      <?php 
+
+          $getServeHour = $pd->getServeHour();
+
+          if($getServeHour) : 
+          while($serve_result = $getServeHour->fetch_assoc()) :
+
+       ?>
+      <option value="<?php echo $serve_result['id']; ?>"><?php echo $serve_result['period']; ?></option>
+
+      <?php endwhile; endif; ?>
     </select>
     <small class="form-text" style="color: red">
       <?php if(isset($err2)){

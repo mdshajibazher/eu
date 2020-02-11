@@ -180,6 +180,17 @@
 		    return $err;
 	}
 
+	public function getPaymentMode(){
+		$query = "SELECT * FROM payment_mode";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getServeHour(){
+		$query = "SELECT * FROM serve_hour";
+		$result = $this->db->select($query);
+		return $result;
+	}
 	public function getSpecificProduct($id){
 			$query = "SELECT product_table.*, category_table.* FROM product_table INNER JOIN category_table ON product_table.categoryid=category_table.id WHERE productid='$id'";
 			$result = $this->db->select($query);

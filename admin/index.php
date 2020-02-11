@@ -22,7 +22,7 @@
                     $getTotalOrder = $order->getTotalOrder();
                 
                 ?>
-                <h3><?php echo $getTotalOrder->num_rows; ?></h3>
+                <h3><?php  if($getTotalOrder){ echo $getTotalOrder->num_rows; }else{ echo 0; } ?></h3>
                 
                 <p>Total Orders</p>
               </div>
@@ -40,7 +40,7 @@
                  <?php
                      $getPendingOrder = $order->getPendingOrder();
                 ?>
-                <h3><?php echo $getPendingOrder->num_rows; ?></h3>
+                <h3><?php if($getPendingOrder){ echo $getPendingOrder->num_rows; }else{ echo 0;} ?></h3>
 
                 <p>Pending Order</p>
               </div>
@@ -58,10 +58,9 @@
                   
                 <?php 
                     $st = new Students;
-                    $getTotalStudents = $st->getTotalStudents;
-                    var_dump($getTotalStudents);
+                    $getTotalStudents = $st->getTotalStudents();
                 ?>
-                <h3><?php echo $getTotalStudents->num_rows; ?></h3>
+                <h3><?php if($getTotalStudents){ echo $getTotalStudents->num_rows; }else{ echo 0; } ?></h3>
 
                 <p>Total Students</p>
               </div>
@@ -80,7 +79,7 @@
                 <?php
                     $getCancelledOrder  = $order->getCancelledOrder();
                 ?>
-                <h3><?php echo $getCancelledOrder->num_rows; ?></h3>
+                <h3><?php if($getCancelledOrder){ echo $getCancelledOrder->num_row; }else{ echo 0; } ?></h3>
 
                 <p>Cancelled Order</p>
               </div>
