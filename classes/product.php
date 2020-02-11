@@ -70,7 +70,7 @@
 
 				    if ($inserted_rows) {
 				        $err['success'] = "success";
-				        header('Refresh: 5; url=product-list.php');
+				        header('Refresh: 3; url=product-list.php');
 
 				    }
 				    else {
@@ -86,9 +86,14 @@
   
 		}
 
+	public function getOldimage($id){
+		$query = "SELECT image FROM product_table WHERE productid='$id'";
+			$result = $this->db->select($query);
+			return $result;
+	}
 
 
-	public function ProductEdit($post, $file, $id){
+	public function ProductEdit($post, $file, $id, $oldimage){
 
 			$err = array();
 			$productName  = $this->fm->validation($post['productname']);
@@ -145,6 +150,7 @@
              if($type == NULL){
                     $err['type'] = 'Please Select A product Type';
              }
+			  
 
    if(count($err)==NULL){
 
@@ -152,6 +158,12 @@
    						 $query = "UPDATE product_table SET productname='$productName',sku='$sku',categoryid='$categoryId',description='$description',price='$price',type='$type' WHERE productid='$id'";
 			    
 			    else:
+
+			  if (file_exists($oldimage)) {
+			  	  unlink($oldimage);
+			  } else {
+			     $err['no_oldimage'] =  'Old Image File Not Exist So It Cant be Deltetd';
+			  }
 
 
 			    move_uploaded_file($file_temp, $uploaded_image);
@@ -165,7 +177,7 @@
 
 				    if($updated_rows) {
 				        $err['success'] = "success";
-				        header('Refresh: 5; url=product-list.php');
+				        header('Refresh: 3; url=product-list.php');
 
 				    }
 				    else {

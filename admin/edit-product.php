@@ -12,20 +12,27 @@
 
   $pd = new Product;
   $product_id = $_GET['id'];
+  $OldImage = $pd->getOldimage($product_id);
+  if($OldImage){
+    while($imageResult = $OldImage->fetch_object()){
+    $OldImageLink = $imageResult->image;
+
   if(isset($_POST['submit'])){
-        $UpdateProduct = $pd->ProductEdit($_POST, $_FILES, $product_id);
+        $UpdateProduct = $pd->ProductEdit($_POST, $_FILES, $product_id, $OldImageLink);
 
-  } ?>
+      } 
+    } 
+  }
+  ?>
 
-  <script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"5000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
+  <script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"3000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
     <?php 
       if(isset($UpdateProduct)) : 
       foreach ($UpdateProduct as  $msg) :  
-          
   if($msg == 'success') :
   ?>
-      
   toastr.success('<?php echo "Product Updated To Database Success" ?>', 'Confirmation Message');
+  
 
   <?php 
       else: 
@@ -33,6 +40,7 @@
     toastr.error('<?php echo $msg; ?>','Error Notification');
 
     <?php
+      var_dump($msg);
       endif;
       endforeach; 
       endif;
