@@ -4,7 +4,6 @@
         
         <!--footer-->
         <footer class="footer">
-            <div class="container">
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="author-dis">
@@ -24,16 +23,12 @@
                         </div>
                     </div><!--/end col-md-6-->
                 </div>
-            </div>
         </footer>
         <!--///end of footer-->
-    </div>
-    </div>
 
 
 
 
-    </div>
 
 
 

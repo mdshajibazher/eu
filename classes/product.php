@@ -38,6 +38,9 @@
 		    if($productName == NULL){
                     $err['product_name'] = 'ProductName field Must Not be empty';
 
+             }elseif(strlen($productName) > 10){
+                    $err['product_name'] = 'Productname must not be greater than 10 charecter';
+
              }
              if($categoryId == NULL){
              		$err['categoryId'] = 'Please Select A Category';
@@ -135,7 +138,11 @@
 		    if($productName == NULL){
                     $err['product_name'] = 'ProductName field Must Not be empty';
 
+             }elseif(strlen($productName) > 10){
+                    $err['product_name'] = 'ProductName Cant be greater than 10 charecter';
+
              }
+
              if($categoryId == NULL){
              		$err['categoryId'] = 'Please Select A Category';
              }
@@ -205,6 +212,12 @@
 	}
 	public function getSpecificProduct($id){
 			$query = "SELECT product_table.*, category_table.* FROM product_table INNER JOIN category_table ON product_table.categoryid=category_table.id WHERE productid='$id'";
+			$result = $this->db->select($query);
+			return $result;
+	}
+
+	public function getSingleProduct($id){
+			$query = "SELECT * FROM product_table WHERE productid='$id'";
 			$result = $this->db->select($query);
 			return $result;
 	}

@@ -48,7 +48,7 @@
     <div class="float-information">
       <?php 
       if(isset($_SESSION['custom_order_date'])){
-         echo "Date: ".$_SESSION['custom_order_date'];
+         echo "Order For: ".$_SESSION['custom_order_date'];
       }else{
         echo "No Date Selected";
       }
@@ -56,10 +56,9 @@
       ?>
     </div>
 
-    <div class="container" >
-      <div class="row" style="background: #fff">
+    <div class="container-fluid" >
       <div class="header-area" id="sticker">
-      <div class="row">
+      <div class="row" background="#fff">
            <div class="col-md-5">
               <div class="main-wrapper">
                   <div class="banner">

@@ -1,6 +1,6 @@
 <?php include 'inc/header.php';
 
-  $cat_id = $_GET['id'];
+  $id = $_GET['id'];
  ?>
 
 
@@ -16,37 +16,32 @@
             
        
       <div class="Product-Area">
-          <div class="section-title"><span>"<?php
-           $getCatName = $pd->getCatName($cat_id);
-           if($getCatName){
-              while($result=$getCatName->fetch_object()){
-              echo $result->catname;
-           }}
-           ?>"   Category </span></div>
+          <div class="section-title"><span>Single Product</span></div>
 
            <div class="row">
         <?php 
-          $getProduct = $pd->getCategoryWiseProduct($cat_id);
-          if($getProduct){
+          $getSingleProduct = $pd->getSingleProduct($id);
+          if($getSingleProduct){
             $i=0;
-            while($result=$getProduct->fetch_assoc()){
+            while($result=$getSingleProduct->fetch_assoc()){
              
          ?>
        
           <!-- Single Product Card -->
           
-          <div class="col-md-2">
-              <div class="single-product">
+          <div class="col-md-4 offset-md-4">
+
               <img class="card-img-top" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
-                <div class="product-title">
-                  <h4 class="card-title"><?php echo $result['productname']; ?></h4>
-                </div>
+     
+                  <h4><?php echo $result['productname']; ?></h4>
+                  <p><?php echo $result['description']; ?></p>
+
               <div class="link">
-                    <h4 class="price">Tk <?php echo $result['price']; ?></h4>
+                    <h4>Tk <?php echo $result['price']; ?></h4>
                     <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
                     </div>
                     <a class="btn-details" href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-eye"></i></a>
-               </div>
+
               </div>
 
          <?php } }  ?>

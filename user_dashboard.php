@@ -2,7 +2,6 @@
       include('classes/sold_product.php');
 ?>
 
-      <div class="container">
 
 
       

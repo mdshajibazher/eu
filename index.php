@@ -8,13 +8,14 @@
       <?php if(isset($_SESSION['custom_order_date']) && isset($_SESSION['custom_order_date'])){ ?>
 
 
-      <div class="container">
+
         <div class="row">
           <div class="col-md-9">
             
        
       <div class="Product-Area">
           <div class="section-title"><span>All Item</span></div>
+          <div class="row">
         <?php 
           $getProduct = $pd->getAllProduct();
           if($getProduct){
@@ -24,27 +25,24 @@
          ?>
   
           <!-- Single Product Card -->
-        
-          <div class="custom-card">
+          
+          <div class="col-md-2">
+              <div class="single-product">
               <img class="card-img-top" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
-                <div class="card-block custom-card-block">
-                    
-                    <h4 class="card-text">Tk <?php echo $result['price']; ?></h4>
-                    <h4 class="product_heading"><?php echo $result['productname']; ?></h4>
-                    <p><?php echo $fm->textShorten($result['description'],55); ?><a class="btn btn-link"href="#">Details</a></p>
-                    
-                </div>
                 <div class="product-title">
                   <h4 class="card-title"><?php echo $result['productname']; ?></h4>
                 </div>
               <div class="link">
+                    <h4 class="price">Tk <?php echo $result['price']; ?></h4>
                     <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
                     </div>
+                    <a class="btn-details"href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-eye"></i></a>
                </div>
+              </div>
 
          <?php } }  ?>
 
-      
+        </div>
 
 
                          <!-- Modal -->
@@ -76,8 +74,8 @@
             </div>
           </div> 
       </div>              
-
-         </div>
+  </div>
+         <!-- End col-md-9  -->
          <div class="col-md-3">
            
 
@@ -122,7 +120,7 @@
               </div>
          </div>
         </div>
-      </div>
+
 
 
 
@@ -149,12 +147,7 @@
 
 ?>
 
-
-
-
-    <div class="container">
       <div class="row">
-
       <form class="dateinput_form" action="" method="POST">
   <div class="form-group" id="orderDate">
     <label for="exampleInputEmail1">Order Date</label>
@@ -189,8 +182,6 @@
 </form>
 
       </div>
-    </div>
-
 
 
 
