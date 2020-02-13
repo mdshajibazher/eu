@@ -146,7 +146,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">BDT</span>
                   </div>
-                  <input type="text" class="form-control" name="price" value="<?php if(isset($_POST['description'])){ echo $_POST['description'];} ?>">
+                  <input type="text" class="form-control" name="price" value="<?php if(isset($_POST['price'])){ echo $_POST['price'];} ?>">
                   
                 </div>
                 <p style="color: red"><?php if(isset($insertProduct['price'])){ echo $insertProduct['price'];} ?></p>

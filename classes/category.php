@@ -39,7 +39,7 @@
 			return $result;
 		}
 		public function getAllCatWithLimit($limit){
-			$query = "SELECT * FROM category_table LIMIT $limit";
+			$query = "SELECT * FROM category_table ORDER BY id DESC LIMIT $limit";
 			$result = $this->db->select($query);
 
 			return $result;

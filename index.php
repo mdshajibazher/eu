@@ -87,7 +87,7 @@
                 <h1>Categories</h1>
               </div>
               <ul>
-                <?php $getAllCat = $ct->getAllCatWithLimit(6);
+                <?php $getAllCat = $ct->getAllCatWithLimit(10);
                      if($getAllCat){
                          while($catResult = $getAllCat->fetch_assoc()){
                  ?>
@@ -103,13 +103,13 @@
               <ul>
                 <?php 
 
-                  $getRecentProduct = $pd->getRecentProduct(6);
+                  $getRecentProduct = $pd->getRecentProduct(7);
                   if($getRecentProduct){
                     $i=0;
                     while($result=$getRecentProduct->fetch_assoc()){
                      
                  ?>
-                <li><a href="#"><i class="fa fa-angle-right"></i><?php echo $result['productname']; ?><br><span><?php echo date( "d/m/Y g:i a", strtotime($result['time'])); ?></span></a></li>
+                <li><a href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-angle-right"></i><?php echo $result['productname']; ?><br><span><?php echo date( "d/m/Y g:i a", strtotime($result['time'])); ?></span></a></li>
 
                 <?php } }  ?>
 

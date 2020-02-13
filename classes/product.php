@@ -250,7 +250,7 @@
 	}
 
 	public function getRecentProduct($limit){
-			$query = "SELECT * FROM product_table LIMIT $limit";
+			$query = "SELECT * FROM product_table ORDER BY productid DESC LIMIT $limit ";
 			$result = $this->db->select($query);
 			return $result;
 	}

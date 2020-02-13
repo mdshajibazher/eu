@@ -249,6 +249,7 @@ text-align: right;
 .single-product{
     border: 2px solid #ddd;
     text-align: center;
+    height: 134px;
     padding: 7px;
     box-shadow: 10px 5px 9px grey;
     position: relative;
@@ -286,9 +287,9 @@ text-align: right;
 
 }
 .single-product .link a:hover{
-  color: #ffffff;
-  background: transparent;
-  border: 1px solid #ffffff;
+  color: #4cd137;
+  background: #ffffff;
+  border: 1px solid #4cd137;
 
 
 }
@@ -310,7 +311,7 @@ h4.price{
   position: absolute;
   top: 50%;
   left: 3px;
-  margin-top: -71px;
+  margin-top: -61px;
   color: #fff;
   font-size: 12px;
   font-weight: bold;
@@ -361,8 +362,19 @@ span.total-cart{
 }
 .single-product:hover .btn-details{
    display: block;
+   color: #fff;
 }
-
+.btn-details:hover{
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+	background: #fff;
+	color: #fd79a8 !important;
+	-webkit-transition: .4s ease;
+	-o-transition: .4s ease;
+	transition: .4s ease;
+}
 
 
 /*-----------------------------------------
