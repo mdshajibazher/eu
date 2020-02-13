@@ -26,12 +26,8 @@
         </footer>
         <!--///end of footer-->
 
-
-
-
-
-
-
+    </div>
+  </div>
 
 
   <script src="js/vendor/jquery-3.4.1.min.js"></script>
@@ -40,9 +36,7 @@
   <script src="js/moment.js"></script>
   <script src="js/bootstrapdatepicker.js"></script>
   <script src="js/jquery.sticky.js"></script>
-  <script>
 
-  </script>
 
 
   <script>
@@ -66,9 +60,9 @@ $('#orderDate input').datepicker({
 
 
   });
-</script>
 
-<script>
+  //Payment Method Js
+
       jQuery(document).ready(function(){
   jQuery('input[name="order_submit"]').on('click', function(){
     var paymet = jQuery('select[id="payment_mod"]');
@@ -86,9 +80,7 @@ $('#orderDate input').datepicker({
   })
 });
 </script>
-<script>
 
-    </script>
     <script src="js/main.js"></script>
 
   

@@ -39,11 +39,6 @@
 </head>
 
 <body>
-  <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
-
-  <!-- Add your site or application content here -->
 
     <div class="float-information">
       <?php 
@@ -58,7 +53,7 @@
 
     <div class="container-fluid" >
       <div class="header-area" id="sticker">
-      <div class="row" background="#fff">
+      <div class="row">
            <div class="col-md-5">
               <div class="main-wrapper">
                   <div class="banner">
@@ -86,32 +81,37 @@
                 </div>
            </div>
       </div>
-
+    <div class="row">
+      <div class="col-md-12">
           <!-- Navbar Start -->
     <nav class="nav-bar">
         <div class="row">
-          <div class="col-md-12">
-            <div class="menu-area">
-              <div class="bars" id="bars">
-                <i class="fa fa-bars"></i>
-              </div>
-              <ul class="menu" id="menu">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="user_dashboard.php">My Account</a></li>
-                <li><a href="#">About Developers</a></li>
-                <li><a href="?action=logout">Logout</a></li>
-                <?php if(isset($_GET['action']) && $_GET['action'] == 'logout'){
-                      session_destroy();
-                   echo "<script>
-                        sessionStorage.clear();
-                          window.location ='login.php';
-                        </script>";
-                } ?>
-              </ul>
+            <div class="col-md-12">
+
+                <div class="menu-area">
+                    <div class="bars" id="bars">
+                      <i class="fa fa-bars"></i>
+                    </div>
+                  <ul class="menu" id="menu">
+                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="user_dashboard.php">My Account</a></li>
+                    <li><a href="#">About Developers</a></li>
+                    <li><a href="?action=logout">Logout</a></li>
+                    <?php if(isset($_GET['action']) && $_GET['action'] == 'logout'){
+                          session_destroy();
+                       echo "<script>
+                            sessionStorage.clear();
+                              window.location ='login.php';
+                            </script>";
+                    } ?>
+                  </ul>
+                </div>
+
             </div>
-          </div>
         </div>
+
 
     </nav>
     <!-- end .nav-bar -->
+      </div>
       </div>

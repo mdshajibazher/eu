@@ -79,9 +79,9 @@
     }else{
       echo "Others";
     } ?></td>
-      <td><?php if($result['order_status'] == 0){ echo "Pending"; }else{ echo "Approved"; } ?></td>
+      <td><?php if($result['order_status'] == 0){ echo '<span class="badge badge-danger">pending</span>'; }else{ echo '<span class="badge badge-success">approved</span>'; } ?></td>
       <td><?php echo $result['payment_mode'] == 1  ? "Cash On Delivery" : "Credit/Debit Card" ; ?></td>
-      <td><?php echo $result['payment_status'] == 0  ? "UNPAID" : "PAID" ; ?></td>
+      <td><?php echo $result['payment_status'] == 0  ? '<span class="badge badge-danger">unpaid</span>' : '<span class="badge badge-success">paid</span>' ; ?></td>
       <td><?php echo $result['ip_address']; ?></td>
       <td><a href="pdf/ex.php?order_id=<?php echo $result['order_id']; ?>&session_id=<?php echo $result['session_id']; ?>">Invoice</a></td>
 

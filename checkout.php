@@ -2,6 +2,8 @@
 include 'inc/header.php';
 include_once 'classes/sold_product.php';
 include_once('lib/database.php');
+include_once 'classes/Ip.php';
+$ip = new Ip;
 $si = new soldItem;
 
 
@@ -27,24 +29,10 @@ if(isset($_POST['order_submit'])){
     
 
 
-	$db = new Database;
+  $db = new Database;
  //For Ip Address
-    function get_ip_address(){
-        foreach (array('HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR') as $key){
-            if (array_key_exists($key, $_SERVER) === true){
-                foreach (explode(',', $_SERVER[$key]) as $ip){
-                    $ip = trim($ip); // just to be safe
 
-                    if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE) !== false){
-                        return $ip;
-                    }
-                }
-            }
-        }
-    }
-    get_ip_address() == NULL ? $ip_addr = 'localhost' : $ip_addr = get_ip_address();
-
-
+    $ip->get_ip_address() == NULL ? $ip_addr = 'localhost' : $ip_addr = get_ip_address();
 
 
     $userid = $_SESSION['id'];
@@ -63,28 +51,35 @@ if(isset($_POST['order_submit'])){
 }
 
 
-
-
-
-
 ?>
-
 
   
 
+
+<?php if(isset($_SESSION['custom_order_date']) && isset($_SESSION['custom_order_date'])){ ?>
+
+
+
+        <div class="row">
+          <div class="col-md-9">
+            
+        
+
+
+  
     <div class="checkout-content">
       <div class="cartoption">    
       <div class="cartpage">
             <h2>Dear <b><?php  echo $_SESSION['name']; ?></b> Please Review Your Cart</h2>
             <table class="tblone">
               <tr>
-                <th width="5%">Sl.</th>
-                <th width="20%">Product Name</th>
-                <th width="15%">Image</th>
-                <th width="15%">Price</th>
-                <th width="15%">Quantity</th>
-                <th width="15%">Total Price</th>
-                <th width="10%">Action</th>
+                <th style="width: 5%">Sl.</th>
+                <th style="width: 20%">Product Name</th>
+                <th style="width: 15%">Image</th>
+                <th style="width: 15%">Price</th>
+                <th style="width: 15%">Quantity</th>
+                <th style="width: 15%">Total Price</th>
+                <th style="width: 10%">Action</th>
               </tr>
 
               <?php 
@@ -131,7 +126,7 @@ if(isset($_POST['order_submit'])){
                 
                             
             </table>
-            <table class="amount-table" width="40%">
+            <table class="amount-table">
               <tr>
                 <th>Sub Total : </th>
                 <td>TK. <?php echo  $sum ?></td>
@@ -151,7 +146,7 @@ if(isset($_POST['order_submit'])){
              </table>
              <form action="" method="POST">
              <select id="payment_mod" name="payment_mod">
-                      <option value="0">-----Select Payment Method-----</option>
+                      <option value="0">---Select Payment Method---</option>
                       <?php 
                         $getPaymentMode = $pd->getPaymentMode();
                         if($getPaymentMode) :
@@ -175,21 +170,150 @@ if(isset($_POST['order_submit'])){
               <input class="btn btn-success" type="submit" name="order_submit" value="Confirm">
               
             </div>
+
+            </div>
             </form>
-          </div>
-      </div>    
+          
+
        <div class="clear"></div>
-    </div>
+
+  </div>
+</div>
 
 
-<script>
-
-</script>
 
 
+
+
+
+
+
+
+
+
+                   
+  </div>
+         <!-- End col-md-9  -->
+         <div class="col-md-3">
+           
+
+              <div class="categories">
+                <div class="cat-right">
+            <div class="canteen-categories">
+              <div class="cat-right-title">
+                
+                <h1>Categories</h1>
+              </div>
+              <ul>
+                <?php $getAllCat = $ct->getAllCatWithLimit(8);
+                     if($getAllCat){
+                         while($catResult = $getAllCat->fetch_assoc()){
+                 ?>
+                <li><a href="category_view.php?id=<?php echo $catResult['id']; ?>"><i class="fa fa-arrow-right"></i><?php echo $catResult['catname']; ?></a></li>
+
+              <?php } }?>
+              </ul>
+            </div>
+            <div class="recent-post">
+              <div class="cat-right-title">
+                <h1>Recent Item</h1>
+              </div>
+              <ul>
+                <?php 
+
+                  $getRecentProduct = $pd->getRecentProduct(6);
+                  if($getRecentProduct){
+                    $i=0;
+                    while($result=$getRecentProduct->fetch_assoc()){
+                     
+                 ?>
+                <li><a href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-angle-right"></i><?php echo $result['productname']; ?><br><span><?php echo date( "d/m/Y g:i a", strtotime($result['time'])); ?></span></a></li>
+
+                <?php } }  ?>
+
+              </ul>
+            </div>
+
+          </div>
+              </div>
+         </div>
+        </div>
+
+
+
+
+
+
+     <?php  } else{
+
+  if(isset($_POST['submit'])){
+      $date       = $_POST['datepicker'];
+      $serve_hour = $_POST['serve_hour'];
+      
+      if($date == NULL){
+          $err1 = "Please Select a Specific Date using Datepicker";
+      }elseif($serve_hour == 0){
+           $err2 = "Please Select a Serve Hour";
+      }else{
+        $date_with_day_name = $date;
+        $nameOfDay = date('l', strtotime($date_with_day_name));
+        $_SESSION['custom_order_date'] = $date." ".$nameOfDay;
+        $_SESSION['serve_hour'] = $serve_hour;
+        echo "<script>window.location = ''; </script>";
+      }
+  }
+
+?>
+
+      <div class="row">
+      <form class="dateinput_form" action="" method="POST">
+  <div class="form-group" id="orderDate">
+    <label for="exampleInputEmail1">Order Date</label>
+    <input type="text" class="form-control" value="<?php if(isset($date)){ echo $date; } ?>" name="datepicker" placeholder="Enter Date Of Order" data-date-start-date="0d" readonly>
+    <small class="form-text" style="color: red">
+      <?php if(isset($err1)){
+        echo $err1;
+    }?></small>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Select Serve Hour</label>
+    <select class="form-control" id="exampleFormControlSelect2" name="serve_hour">
+      <option value="0">-----select Serve Hour-----</option>
+      <?php 
+
+          $getServeHour = $pd->getServeHour();
+
+          if($getServeHour) : 
+          while($serve_result = $getServeHour->fetch_assoc()) :
+
+       ?>
+      <option value="<?php echo $serve_result['id']; ?>"><?php echo $serve_result['period']; ?></option>
+
+      <?php endwhile; endif; ?>
+    </select>
+    <small class="form-text" style="color: red">
+      <?php if(isset($err2)){
+        echo $err2;
+    } ?></small>
+  </div>
+  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+</form>
+
+      </div>
+
+
+
+
+
+     <?php  }
+
+      ?>
+              
+      
 
 <?php include 'inc/footer.php'; ?>
             
+
 
 
 

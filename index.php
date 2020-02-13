@@ -36,7 +36,7 @@
                     <h4 class="price">Tk <?php echo $result['price']; ?></h4>
                     <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
                     </div>
-                    <a class="btn-details"href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-eye"></i></a>
+                    <a class="btn-details" href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-eye"></i></a>
                </div>
               </div>
 
@@ -79,7 +79,7 @@
          <div class="col-md-3">
            
 
-              <div class="categories">
+              <div class="sidebar">
                 <div class="cat-right">
             <div class="canteen-categories">
               <div class="cat-right-title">
@@ -87,7 +87,7 @@
                 <h1>Categories</h1>
               </div>
               <ul>
-                <?php $getAllCat = $ct->getAllCatWithLimit(10);
+                <?php $getAllCat = $ct->getAllCatWithLimit(8);
                      if($getAllCat){
                          while($catResult = $getAllCat->fetch_assoc()){
                  ?>
@@ -103,7 +103,7 @@
               <ul>
                 <?php 
 
-                  $getRecentProduct = $pd->getRecentProduct(7);
+                  $getRecentProduct = $pd->getRecentProduct(6);
                   if($getRecentProduct){
                     $i=0;
                     while($result=$getRecentProduct->fetch_assoc()){
@@ -146,8 +146,9 @@
   }
 
 ?>
-
+      <div class="order-date-wrapper">
       <div class="row">
+
       <form class="dateinput_form" action="" method="POST">
   <div class="form-group" id="orderDate">
     <label for="exampleInputEmail1">Order Date</label>
@@ -180,7 +181,7 @@
   </div>
   <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
-
+      </div>
       </div>
 
 
