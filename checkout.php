@@ -32,7 +32,7 @@ if(isset($_POST['order_submit'])){
   $db = new Database;
  //For Ip Address
 
-    $ip->get_ip_address() == NULL ? $ip_addr = 'localhost' : $ip_addr = get_ip_address();
+    $ip->get_ip_address() == NULL ? $ip_addr = 'localhost' : $ip_addr =  $ip->get_ip_address();
 
 
     $userid = $_SESSION['id'];

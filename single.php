@@ -29,9 +29,9 @@
        
           <!-- Single Product Card -->
           
-          <div class="col-md-4 offset-md-4">
+          <div class="col-md-6 offset-md-3">
 
-              <img class="card-img-top" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
+              <img class="card-img-top img-thumbnail" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
      
                   <h4><?php echo $result['productname']; ?></h4>
                   <p><?php echo $result['description']; ?></p>
@@ -113,7 +113,7 @@
                     while($result=$getRecentProduct->fetch_assoc()){
                      
                  ?>
-                <li><a href="#"><i class="fa fa-angle-right"></i><?php echo $result['productname']; ?><br><span><?php echo date( "d/m/Y g:i a", strtotime($result['time'])); ?></span></a></li>
+                <li><a href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-angle-right"></i><?php echo $result['productname']; ?><br><span><?php echo date( "d/m/Y g:i a", strtotime($result['time'])); ?></span></a></li>
 
                 <?php } }  ?>
 

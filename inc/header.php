@@ -26,8 +26,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="favicon.png">
-  <!-- Place favicon.ico in the root directory -->
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
 
   <link rel="stylesheet" href="css/font-awesome.css">
   <link rel="stylesheet" href="css/bootstrap.css">
