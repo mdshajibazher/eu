@@ -84,6 +84,9 @@
         font-size: 25px;
         padding: 5px 10px;
     }
+    .tblone th {
+        font-size: 12px;
+    }
 
 }
 

@@ -609,47 +609,9 @@ Chekout Page
   padding: 30px 0;
   text-align: center;
 }
-.tblone {
-  border: 1px solid #fff;
-  margin-bottom: 12px;
-  width: 100%;
-  font-size: 18px;
-    font-family: courier
-}
-.tblone th {
-  background: #666 none repeat scroll 0 0;
-  color: #fff;
-  font-size: 17px;
-  padding: 5px 8px;
-  text-align: center;
-}
-.tblone td{padding:10px;text-align:center;}
 
-table.tblone tr:nth-child(2n+1){background:#fff;height:30px;}
-table.tblone tr:nth-child(2n){background:#fdf0f1;height:30px;}
-table.tblone input[type="number"] {
-  border: 1px solid #ddd;
-  padding: 2px;
-  width: 60px;
-}
-table.tblone input[type="submit"] {
-  background: #333 none repeat scroll 0 0;
-  border: 1px solid #000;
-  border-radius: 3px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 14px;
-  padding: 1px 5px;
-}
-table.tblone a {
-  color: #fe5800;
-  font-weight: bold;
-  text-decoration: none;
-}
-table.tblone a:hover{color: #000;}
-table.tblone img {
-  height: 30px;
-}
+
+
 .amount-table{
   float:right;
   text-align:left;
@@ -658,20 +620,11 @@ table.tblone img {
 }
 .shopping {
   margin-top: 30px;
-}
-.shopleft, .shopleft {
-  float: left;
-  text-align: center;
-  width: 610px;
+  text-align: right;
 }
 
 
-.shopright a{
-  background: #4cd137;
-}
-.shopright {
-  margin: 0 40px;
-}
+
 
 
 /*------------------------------
@@ -687,6 +640,7 @@ p.page_title{
    font-size: 24px;
     text-transform: uppercase;
     color: #000;
+    text-align: center;
 }
 
 .pdf-link{

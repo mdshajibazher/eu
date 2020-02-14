@@ -90,7 +90,7 @@ $purchaseDate = date( "d/m/Y g:i a", strtotime($result['purchaseAt']));
 <p class="page_title">Product Details</p>
 
 
-  <table class="table table-bordered table-striped table-custom">
+  <table class="table table-bordered table-striped table-custom table-responsive-sm">
     <thead>
       <tr>
         <th>Sl</th>

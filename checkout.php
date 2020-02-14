@@ -69,10 +69,10 @@ if(isset($_POST['order_submit'])){
   
     <div class="checkout-content">
       <div class="cartoption">    
-      <div class="cartpage">
+      <div class="cartpage table-responsive-sm">
             <h2>Dear <b><?php  echo $_SESSION['name']; ?></b> Please Review Your Cart</h2>
-            <table class="tblone">
-              <tr>
+            <table class="table table-striped table-responsive-sm">
+              <tr class="bg-light">
                 <th style="width: 5%">Sl.</th>
                 <th style="width: 20%">Product Name</th>
                 <th style="width: 15%">Image</th>
@@ -110,7 +110,7 @@ if(isset($_POST['order_submit'])){
 
                 <td><?php echo $j ?></td>
                 <td><?php echo $productName ?></td>
-                <td><img src="admin/<?php echo $productImg ?>" alt=""/></td>
+                <td><img style="height:50px"  src="admin/<?php echo $productImg ?>" alt=""/></td>
                 <td>Tk. <?php echo $price ?></td>
                 <td>
                     <?php echo $product_qty ?> Pcs
@@ -161,17 +161,13 @@ if(isset($_POST['order_submit'])){
               <p id="msg"></p>
               <input type="hidden" name="order_id" value="<?php echo $_GET['order_id']; ?>">
               <input type="hidden" name="session_id" value="<?php echo $_GET['session_id']; ?>">
-          </div>
-          <div class="shopping">
-            <div class="shopleft">
+            <div class="shopping">
               <a class="btn btn-danger" href="index.php">Cancel Order</a>
-            </div>
-            <div class="shopright" style="text-align: right">
               <input class="btn btn-success" type="submit" name="order_submit" value="Confirm">
-              
-            </div>
 
             </div>
+          </div>
+
             </form>
           
 
