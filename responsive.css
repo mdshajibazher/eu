@@ -1,0 +1,98 @@
+/*Custom Layout*/
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+
+
+
+}
+
+/* Tablet Layout: 768px. */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+
+	
+}
+
+
+/* Mobile Layout: 320px. */
+
+@media only screen and (max-width: 767px) {
+    
+    .banner{
+        margin-top: 20px;
+    }
+    .cart-item-count{
+        float: none;
+    }
+    .cart-item-count a span {
+    	left: 50%;
+    	margin-left: -11px;
+     }
+    .nav-bar{
+        background: none;
+    }
+     #menu{
+        display: none;
+        margin: 0 auto;
+        padding: 13px 0px;
+        width: 90%;
+        background:#34495e;
+        border-radius: 5px;
+     }
+
+    .menu-area ul.menu li{
+        float: none;
+    }
+    .menu-area ul.menu li a{
+        font-size: 11px;
+    }
+     .menu-button{
+    	display: block;
+    }
+    .float-information{
+        display: none;
+    }
+    .search-box{
+        margin-bottom: 50px;
+    }
+    .search-box .input-group{
+        padding: 0px 10px;
+    }
+    .single-product{
+        padding: 0;
+    }
+    h4.card-title{
+        font-size: 20px;
+    }
+    h4.price{
+        padding: 9px 4px;
+        border-radius: 3px;
+        left: 16px;
+        margin-top: -107px;
+        font-size: 20px;
+
+    }
+    .dateinput_form{
+        width: 280px;
+        margin: 22px auto;
+        padding: 36px 5px;
+        border-radius: 8px;
+    }
+    a.btn-details{
+        margin-left: -22px;
+        margin-top: -25px;
+        font-size: 25px;
+        padding: 5px 10px;
+    }
+
+}
+
+
+/* Wide Mobile Layout: 480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+	
+
+
+
+}

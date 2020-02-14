@@ -28,13 +28,18 @@
   <link rel="manifest" href="site.webmanifest">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
-
+  <!--Fontawesome Css-->
   <link rel="stylesheet" href="css/font-awesome.css">
+  <!--Bootstrap  Css-->
   <link rel="stylesheet" href="css/bootstrap.css">
+  <!--Bootstrap Datepicker Css-->
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="style.css">
+  <!--Animate Css-->
   <link rel="stylesheet" href="css/animate.css">
-
+  <!--Style Css-->
+  <link rel="stylesheet" href="style.css">
+   <!-- Responsive css -->
+  <link rel="stylesheet" href="responsive.css">
   <meta name="theme-color" content="#fafafa">
 </head>
 
@@ -87,11 +92,13 @@
     <nav class="nav-bar">
         <div class="row">
             <div class="col-md-12">
-
+           
                 <div class="menu-area">
-                    <div class="bars" id="bars">
-                      <i class="fa fa-bars"></i>
-                    </div>
+                  <div class="menu-button">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
                   <ul class="menu" id="menu">
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="user_dashboard.php">My Account</a></li>

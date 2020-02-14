@@ -116,6 +116,41 @@ background: #ecf0f1;
 /***************************************/
 /*.nav-bar*/
 /***************************************/
+.menu-button{
+	display: none;
+	width: 40px;
+	height: 30px;
+	border-radius: 3px;
+	line-height: 5px;
+	position: absolute;
+	top: -34px;
+	padding: 0 4px;
+	right: 32px;
+	cursor: pointer;
+	transition: all ease-in-out 400ms;
+}
+.menu-button span{
+	display: inline-block;
+	width: 100%;
+	height: 2px;
+	background-color: #000000;
+	transition: all ease-in-out 400ms;
+
+}
+.menu-button.active span:nth-child(2) {
+    display: none;
+}
+.menu-button.active span:first-child{
+	transform: rotate(45deg);
+	transform-origin: 11px 50%;
+}
+
+.menu-button.active span:last-child{
+	transform: rotate(-45deg);
+	transform-origin: 11px 50%;
+}
+
+
 .nav-bar {
   width: 100%;
   background-color: #34495e;
@@ -232,7 +267,6 @@ text-align: right;
 }
 
 .Product-Area{
-  background: #fff;
   padding: 10px;
   height: 100%;
 }
@@ -358,7 +392,7 @@ span.total-cart{
 
 
 .single-product:hover::after{
-  opacity: .9;
+  opacity: .8;
 }
 .single-product:hover .btn-details{
    display: block;

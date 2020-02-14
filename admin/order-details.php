@@ -2,9 +2,12 @@
 
 <div class="wrapper">
 
-<?php include('inc/top_nav.php'); ?>
-<?php include('inc/sidebar.php'); ?>
-<?php include  '../classes/Order.php'; ?>
+<?php include('inc/top_nav.php'); 
+include('inc/sidebar.php'); 
+include  '../classes/Order.php'; 
+include_once '../classes/sold_product.php';
+$si = new soldItem;
+?>
 
 <?php 
   $order = new Order;
@@ -43,7 +46,6 @@
           <div class="col-12">
             <div class="callout callout-info">
               <h5><i class="fas fa-info"></i> Note:</h5>
-              <?php var_dump($result); ?>
             </div>
 
 
@@ -62,7 +64,7 @@
               <!-- info row -->
               <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
-                  From
+                  Order From
                   <address>
                     <strong><?php echo $result['name']; ?></strong><br>
                     <?php  echo $result['Address']; ?><br>
@@ -72,22 +74,13 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  To
-                  <address>
-                    <strong>John Doe</strong><br>
-                    795 Folsom Ave, Suite 600<br>
-                    San Francisco, CA 94107<br>
-                    Phone: (555) 539-1037<br>
-                    Email: john.doe@example.com
-                  </address>
+
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
                   <b>Invoice #<?php  echo $result['order_id']; ?></b><br>
                   <br>
                   <b>Order ID: </b> #<?php  echo $result['order_id']; ?><br>
-                  <b>Payment Due:</b> 2/22/2014<br>
-                  <b>Account:</b> 968-34567
                 </div>
                 <!-- /.col -->
               </div>
@@ -110,10 +103,12 @@
                     <tbody>
                       <?php $getCartInformation = $order->getSpecificOrderCartInformation($order_id);
                           $i=0;
+                          $sum = 0;
                           if($getCartInformation) : 
                               while($cart_result=$getCartInformation->fetch_assoc()) : 
                                 $i++;
-                          var_dump($cart_result);
+                          $total = ($cart_result['price']*$cart_result['quantity']);
+                          $sum = $sum+$total;
                        ?>
                     <tr>
                       <td><?php echo $i; ?></td>
@@ -121,9 +116,9 @@
                       <td><?php echo $cart_result['quantity']; ?></td>
                       <td><img width="50" class="img-thumbnail" src="<?php echo $cart_result['image']; ?>" alt=""></td>
                       <td>Tk.<?php echo $cart_result['price']; ?></td>
-                      <td><?php echo ($cart_result['price']*$cart_result['quantity']); ?></td>
+                      <td><?php echo $total; ?></td>
                     </tr>
-
+                     
                   <?php endwhile; endif; ?>
                     
                     </tbody>
@@ -143,32 +138,31 @@
                   <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
 
                   <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem
-                    plugg
-                    dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+                   Some Notes About Payment
                   </p>
                 </div>
                 <!-- /.col -->
                 <div class="col-6">
-                  <p class="lead">Amount Due 2/22/2014</p>
-
                   <div class="table-responsive">
                     <table class="table">
                       <tr>
                         <th style="width:50%">Subtotal:</th>
-                        <td>$250.30</td>
+                        <td>Tk. <?php echo $sum; ?></td>
                       </tr>
                       <tr>
-                        <th>Tax (9.3%)</th>
-                        <td>$10.34</td>
+                        <?php
+                        $getDisocunt = $si->getDiscount();
+                        $discount = $sum*($getDisocunt/100); ?>
+                        <th>Discount  (9.3%)</th>
+                        <td>Tk. <?php echo $discount; ?></td>
                       </tr>
                       <tr>
                         <th>Shipping:</th>
-                        <td>$5.80</td>
+                        <td>Tk. 00</td>
                       </tr>
                       <tr>
                         <th>Total:</th>
-                        <td>$265.24</td>
+                        <td><?php echo ($sum-$discount) ?></td>
                       </tr>
                     </table>
                   </div>

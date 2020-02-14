@@ -98,7 +98,29 @@
                 </a>
               </li>
               
+              
+              
+              
+              
+              
             </ul>
+            
+             <li class="nav-item has-treeview">
+            <a href="index.php" class="nav-link">
+              <i class="nav-icon fa  fa-graduation-cap"></i>
+              <p>Students</p>
+               <i class="right fas fa-angle-left"></i>
+            </a>
+            
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <a href="student-list.php" class="nav-link">
+                  <i class="fa fa-list-ul nav-icon"></i>
+                  <p>Student List</p>
+                </a>
+              </li>
+            
+            
           
           
         </ul>

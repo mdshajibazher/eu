@@ -26,7 +26,7 @@
   
           <!-- Single Product Card -->
           
-          <div class="col-md-2">
+          <div class="col-md-2 col-lg-2">
               <div class="single-product">
               <img class="card-img-top" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
                 <div class="product-title">
@@ -55,7 +55,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body table-responsive-sm">
                   <table class="show-cart table">
                     <tr>
                     <p id="para"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>LOADING................</p>
