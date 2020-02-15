@@ -64,6 +64,13 @@
 				
 				return $err;
 		}
+		
+	    public function getCategoryProductCount($id){
+	        
+	       $query = "SELECT * FROM product_table WHERE categoryid='$id'";
+			$result = $this->db->select($query);
+			return $result;
+	    }
 
 		public function catUpdate($catName, $id){
 		    $err = array();

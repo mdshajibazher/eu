@@ -101,8 +101,17 @@
                         <tr role="row" class="odd">
                             <td><?php echo $i;  ?></td>
                             <td>#<?php echo $result['id'];  ?></td>
-                            <td><?php echo $result['catname'];  ?></td>
-                            <td><a class="btn btn-primary btn-sm" href="edit-category.php?id=<?php echo $result['id']; ?>">Edit</a> | <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['id']; ?>">Delete</a></td>
+                            
+                            
+                            <?php 
+                            
+                            $ProductCounts = $ct->getCategoryProductCount($result['id']); 
+        
+                            ?>
+                            
+                            
+                            <td><?php echo $result['catname'];  ?> <span class="badge badge-success"><?php echo $ProductCounts->num_rows ?></span></td>
+                            <td><a class="btn btn-primary btn-sm" href="edit-category.php?id=<?php echo $result['id']; ?>"><i class="fa fa-edit"></i></a> | <a class="btn btn-info btn-sm" href="view-category-product.php?id=<?php echo $result['id']; ?>"><i class="fa fa-eye"></i></a> | <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure this Category?')" href="?delid=<?php echo $result['id']; ?>"><i class="fa fa-trash-alt"></i></a></td>
                           </tr>
        
 

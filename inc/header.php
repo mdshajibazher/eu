@@ -17,7 +17,7 @@
 ?>
 
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en-us">
 
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   
@@ -94,11 +94,13 @@
             <div class="col-md-12">
            
                 <div class="menu-area">
-                  <div class="menu-button">
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
+                <div class="button-wrapper">
+            <div class="menu-button">
+    						<span></span>
+    						<span></span>
+    						<span></span>
+    					</div>
+          </div>
                   <ul class="menu" id="menu">
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="user_dashboard.php">My Account</a></li>

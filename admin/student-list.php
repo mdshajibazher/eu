@@ -110,7 +110,7 @@ include  '../classes/Students.php';
                             <td><?php echo $result['phone'];  ?></td>
                             <td><?php echo $result['Address'];  ?></td>
                             <td><?php echo $result['created_at'];  ?></td>
-                            <td><a class="btn btn-success" href=""><i class="fa fa-eye-slash"></i></a></td>
+                            <td><a class="btn btn-info btn-sm" href=""><i class="fa fa-eye"></i></a></td>
                             
                           </tr>
        

@@ -242,6 +242,12 @@
 			$result = $this->db->select($query);
 			return $result;
 	}
+	
+	public function getSingleCategoryProduct($id){
+			$query = "SELECT * FROM product_table WHERE categoryid='$id'  ORDER BY product_table.productid DESC";
+			$result = $this->db->select($query);
+			return $result;
+	}
 
 	public function getAllProduct(){
 			$query = "SELECT product_table.*, category_table.catname FROM product_table INNER JOIN category_table ON product_table.categoryid=category_table.id  ORDER BY product_table.productid DESC";

@@ -11,15 +11,45 @@ $si = new soldItem;
 
 <?php 
   $order = new Order;
+  $order_id = $_GET['id'];
 ?>
 
+<?php if(isset($_POST['approval_submit'])) : 
+
+  if($_POST['approval'] == 'approved' ) :
+
+      $orderApproval = $order->orderApproval($order_id);
+
+      $msg = "Your Order Has Been Approved Successfully";
+
+      echo $msg2;
+    endif;
+
+endif;  ?>
+
 <?php 
-    $order_id = $_GET['id'];
+    
     $getSpecificOrder = $order->getSpecificOrderInformation($order_id);
     if($getSpecificOrder) :
     while($result=$getSpecificOrder->fetch_assoc()) : 
-
  ?>
+
+<?php
+  if(isset($msg)) :  
+  ?>
+
+<script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"5000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
+
+
+      
+  toastr.success('<?php echo $msg; ?>', 'Confirmation Message');
+
+</script>
+  <?php
+      endif;
+  ?>
+
+
 
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -44,9 +74,7 @@ $si = new soldItem;
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <div class="callout callout-info">
-              <h5><i class="fas fa-info"></i> Note:</h5>
-            </div>
+            
 
 
             <!-- Main content -->
@@ -81,6 +109,10 @@ $si = new soldItem;
                   <b>Invoice #<?php  echo $result['order_id']; ?></b><br>
                   <br>
                   <b>Order ID: </b> #<?php  echo $result['order_id']; ?><br>
+                  <b>Order Status: &nbsp;<?php echo ($result['order_status'] == 0)  ? '<span class="badge badge-danger">pending</span>' : '<span class="badge badge-success">approved</span>' ?><br>
+
+
+                  
                 </div>
                 <!-- /.col -->
               </div>
@@ -174,13 +206,27 @@ $si = new soldItem;
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                  <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                    Payment
+                  <a href="invoice-print.html" target="_blank" class="btn btn-info"><i class="fas fa-print"></i> Submit Payment</a>
+
+
+                  <!-- Pending  -->
+                  <?php if($result['order_status'] == 0) : ?>
+
+                  
+                  
+                  <form action="" method="POST">
+                  <input type="hidden" name="approval" value="approved">
+                  <button type="submit" class="btn btn-primary float-right" name="approval_submit" style="margin-right: 5px;">
+                     Approve This Order <i class="fas fa-question"></i>
                   </button>
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> Generate PDF
+                  </form>
+
+                  <?php else : ?>
+                    <button type="button" class="btn btn-success float-right" style="margin-right: 5px;" disabled>
+                     Approved <i class="fas fa-check-circle"></i>
                   </button>
+                  <?php endif;  ?>
+
                 </div>
               </div>
             </div>

@@ -51,7 +51,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Show Product</h1>
+            <h1>Categorywise Product</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -72,7 +72,7 @@
                 
               <div class="card">
     <div class="card-header">
-        <h3 class="card-title">EU e-Canteen Product DataTable </h3>
+        <h3 class="card-title">Categorywise Product DataTable </h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -99,10 +99,11 @@
                         <tbody>
                        <?php 
                             $pd = new Product;
-                            $getProduct = $pd->getAllProduct();
-                            if($getProduct){
+                            $catid = $_GET['id'];
+                            $getCatWiseProduct = $pd->getSingleCategoryProduct($catid);
+                            if($getCatWiseProduct){
                             $i=0;
-                            while($result=$getProduct->fetch_assoc()){
+                            while($result=$getCatWiseProduct->fetch_assoc()){
                             $i++;
                          ?>
                             
@@ -117,8 +118,10 @@
                             <td><img height="50px" src="<?php echo $result['image'];  ?>" alt=""></td>
                             <td><?php echo $result['type'];  ?></td>
                             <td><?php echo $result['time'];  ?></td>
-                            <td><a class="btn btn-primary btn-sm" href="edit-product.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-edit"></i> 
-                            </a> |  <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['productid']; ?>"><i class="fa fa-trash-alt"></i></a></td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" href="edit-product.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-edit"></i></a>&nbsp;
+                            
+                            <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')" href="?delid=<?php echo $result['productid']; ?>"><i class="fa fa-trash-alt"></i></a></td>
                           </tr>
        
 

@@ -28,8 +28,12 @@
     	left: 50%;
     	margin-left: -11px;
      }
-    .nav-bar{
+    .menu-area{
         background: none;
+    }
+    .button-wrapper{
+    	background: #f1c40f;
+    	height: 42px;
     }
      #menu{
         display: none;
@@ -42,9 +46,14 @@
 
     .menu-area ul.menu li{
         float: none;
+		margin: 7px 4px;
+		background: #f1c40f;
+		border-radius: 5px;
+		text-align: center;
     }
     .menu-area ul.menu li a{
-        font-size: 11px;
+    	font-weight: bold;
+
     }
      .menu-button{
     	display: block;

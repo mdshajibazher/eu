@@ -92,7 +92,7 @@
 
                             <td><?php if($result['delivery_status'] == 0){ echo '<span class="badge bg-warning">pending</span>'; }else{ echo '<span class="badge bg-success">served</span>'; }  ?></td>
 
-                            <td><a class="btn btn-primary btn-sm" href="order-details.php?id=<?php echo $result['order_id']; ?>">Details</a></td>
+                            <td><a class="btn btn-info btn-sm" href="order-details.php?id=<?php echo $result['order_id']; ?>"><i class="fa fa-eye"></i></a></td>
                           </tr>
        
 

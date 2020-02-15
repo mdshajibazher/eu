@@ -45,6 +45,10 @@
 		return $result;
     }
 
+    public function orderApproval($id){
+    	$query = "UPDATE item_sold SET order_status =1 WHERE order_id='$id'";
+		$catUpdate = $this->db->update($query);
+    }
     
 
 
