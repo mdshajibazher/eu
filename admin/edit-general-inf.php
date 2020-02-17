@@ -5,27 +5,29 @@
 <?php include('inc/top_nav.php'); ?>
 <?php include('inc/sidebar.php'); ?>
 
+<?php include  '../classes/brand.php'; ?>
 <?php include  '../classes/category.php'; ?>
 
 <?php 
 
   $ct = new Category;
+  $cat_id = $_GET['id'];
   if(isset($_POST['submit'])){
         $category_name = $_POST['category_name'];
-        $insertCategory = $ct->catInsert($category_name);
+        $updateCategory = $ct->catUpdate($category_name,$cat_id);
 
     }
 ?>
 
-<script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"5000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
+<script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"2500","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
 <?php
-  if(isset($insertCategory)) : 
-  foreach ($insertCategory as  $msg) :  
+  if(isset($updateCategory)) : 
+  foreach ($updateCategory as  $msg) :  
 
     if($msg == 'success') :
   ?>
       
-  toastr.success('<?php echo "Product Inserted To Database Success" ?>', 'Confirmation Message');
+  toastr.success('<?php echo "Category Updated Successfully" ?>', 'Confirmation Message');
 
   <?php 
       else: ?>
@@ -45,7 +47,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add Category</h1>
+            <h1>Edit Category</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -68,7 +70,7 @@
             <!-- Horizontal Form -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Add New Category</h3>
+                <h3 class="card-title">Edit Existing Category</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -77,9 +79,20 @@
                   <div class="form-group row">
                     <label for="productname" class="col-sm-3 col-form-label">Category Name</label>
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="category_name" placeholder="Enter Category Name" name="category_name" value="<?php if(isset($_POST['category_name'])){ echo $_POST['category_name']; }?>">
+                        
+                       <?php 
+                       $getGenralinf = $ct->getGeneralInforamtion();
+                       if($getGenralinf) : 
+                           while($getGenralinfresult = $getGenralinf->fetch_assoc()) :
+                       ?>
+                       
+                      <input type="text" class="form-control" id="category_name" placeholder="Enter Category Name" name="category_name" value="<?php if(isset($_POST['category_name'])){ echo $_POST['category_name']; } else{
+                            echo $CatResult['catname'];
+                      }?>">
 
-                      <p style="color: red"><?php if(isset($insertCategory['empty'])){ echo $insertCategory['empty'];} ?></p>
+                      <?php endwhile; endif; ?>
+                      
+                      <p style="color: red"><?php if(isset($updateCategory['empty'])){ echo $updateCategory['empty'];} ?></p>
                     </div>
                     
                   </div>

@@ -36,10 +36,14 @@ if(isset($_POST['order_submit'])){
 
 
     $userid = $_SESSION['id'];
-   $custom_order_date = $_SESSION['custom_order_date'];
-   $serve_hour        = $_SESSION['serve_hour'];
-    $path = 'countlog.txt';
-    $query2 = "INSERT INTO item_sold(user_id, session_id, discount,vat, order_id, payment_mode, payment_status, delivery_status,custom_order_date,ip_address ,serve_hour) VALUES('$userid','$sid','10','0','$oid','$payment_mod','0','Not Delivered','$custom_order_date','$ip_addr', '$serve_hour')";
+    $custom_order_date = $_SESSION['custom_order_date'];
+    $serve_hour        = $_SESSION['serve_hour'];
+    $order_discount = $_POST['discount'];
+    $order_vat = $_POST['vat'];
+    $order_shipping_charge = $_POST['shipping'];
+    $notes = $_POST['notes'];
+
+    $query2 = "INSERT INTO item_sold(user_id, session_id, discount,vat,shipping,order_id, payment_mode, payment_status, delivery_status,custom_order_date,notes,ip_address ,serve_hour) VALUES('$userid','$sid','$order_discount','$order_vat','$order_shipping_charge','$oid','$payment_mod','0','Not Delivered','$custom_order_date','$notes','$ip_addr', '$serve_hour')";
     $insert = $db->insert($query2);
 
     if($insert){
@@ -86,7 +90,7 @@ if(isset($_POST['order_submit'])){
                     $sess_id = session_id();
                     $orderId = $_GET['order_id'];
                     $getcartInf= $si->getCartInformation($orderId);
-                    $getDisocunt = $si->getDiscount();
+                    $getDiscountVatShipping = $si->getDiscountVatShipping();
                     if($getcartInf){
                       $j=0;
                       $sum = 0;
@@ -101,8 +105,10 @@ if(isset($_POST['order_submit'])){
                     $sub_total = $price*$product_qty;
 
                     $sum = $sum+$sub_total;
-                    $discount = $sum*($getDisocunt/100);
-                    $total_value = $sum-$discount;
+                    $discount = $sum*($getDiscountVatShipping['discount']/100);
+                    $vat = $sum*($getDiscountVatShipping['vat']/100);
+                    $shipping = $getDiscountVatShipping['shipping'];
+                    $total_value = $sum-$discount+$vat+$shipping;
                
                ?>
 
@@ -126,25 +132,47 @@ if(isset($_POST['order_submit'])){
                 
                             
             </table>
-            <table class="amount-table">
+
+
+            <form action="" method="POST">
+
+
+            <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="notes"><b>Notes About this Order</b></label><br>
+                <textarea name="notes" id="notes" cols="30" rows="10" class="form-control" placeholder="Optional"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+            <table class="table-responsive-sm table table-bordered">
               <tr>
                 <th>Sub Total : </th>
                 <td>TK. <?php echo  $sum ?></td>
               </tr>
               <tr>
-                <th>Discount : <?php echo $getDisocunt ?>%  </th>
+                <th>Discount (<?php echo $getDiscountVatShipping['discount'] ?>%) :  </th>
                 <td>Tk - <?php echo  $discount ?></td>
+              </tr>
+              <tr>
+                  <th>VAT (<?php echo $getDiscountVatShipping['vat'] ?>%):   </th>
+                <td>Tk + <?php echo  $vat; ?></td>
+              </tr>
+              <tr>
+                  <th>Shipping : </th>
+                <td>Tk + <?php echo  $shipping; ?></td>
               </tr>
               <tr>
                 <th>Grand Total :</th>
                 <td>TK. <?php echo  $total_value ?></td>
               </tr>
-              <tr>
-                  
-              </tr>
-
+              
              </table>
-             <form action="" method="POST">
+             </div>
+              </div>
+
+
+             
              <select id="payment_mod" name="payment_mod">
                       <option value="0">---Select Payment Method---</option>
                       <?php 
@@ -161,6 +189,9 @@ if(isset($_POST['order_submit'])){
               <p id="msg"></p>
               <input type="hidden" name="order_id" value="<?php echo $_GET['order_id']; ?>">
               <input type="hidden" name="session_id" value="<?php echo $_GET['session_id']; ?>">
+              <input type="hidden" name="discount" value="<?php echo $getDiscountVatShipping['discount']; ?>">
+              <input type="hidden" name="vat" value="<?php echo $getDiscountVatShipping['vat'] ?>">
+              <input type="hidden" name="shipping" value="<?php echo $getDiscountVatShipping['shipping'] ?>">
             <div class="shopping">
               <a class="btn btn-danger" href="index.php">Cancel Order</a>
               <input class="btn btn-success" type="submit" name="order_submit" value="Confirm">

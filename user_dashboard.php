@@ -79,7 +79,13 @@
     }else{
       echo "Others";
     } ?></td>
-      <td><?php if($result['order_status'] == 0){ echo '<span class="badge badge-danger">pending</span>'; }else{ echo '<span class="badge badge-success">approved</span>'; } ?></td>
+      <td><?php if($result['order_status'] == 0){ 
+          echo '<span class="badge badge-warning">pending</span>'; }
+      elseif($result['order_status'] == 1){ 
+          echo '<span class="badge badge-success">approved</span>'; }
+      else{
+      echo '<span class="badge badge-danger">cancelled</span>';
+      } ?></td>
       <td><?php echo $result['payment_mode'] == 1  ? "Cash On Delivery" : "Credit/Debit Card" ; ?></td>
       <td><?php echo $result['payment_status'] == 0  ? '<span class="badge badge-danger">unpaid</span>' : '<span class="badge badge-success">paid</span>' ; ?></td>
       <td><?php echo $result['ip_address']; ?></td>

@@ -7,6 +7,7 @@ include('inc/sidebar.php');
 include  '../classes/Order.php'; 
 include_once '../classes/sold_product.php';
 $si = new soldItem;
+
 ?>
 
 <?php 
@@ -14,24 +15,70 @@ $si = new soldItem;
   $order_id = $_GET['id'];
 ?>
 
+<?php
+if(isset($_GET['read']) && $_GET['read'] == 1){
+    $updateNotificationReadStatus = $nt->updateNotificationReadStatus($order_id);
+}
+?>
+
+
+<?php if(isset($_POST['payment_submit'])) : 
+
+
+	 $amount = $_POST['amount'];
+
+
+      $orderPayment = $order->StorePayment($order_id, $amount);
+      if(isset($orderPayment)){
+        $msg = $orderPayment;
+      }
+
+
+endif;  
+
+?>
+
+
+
+
+
 <?php if(isset($_POST['approval_submit'])) : 
 
   if($_POST['approval'] == 'approved' ) :
 
       $orderApproval = $order->orderApproval($order_id);
-
-      $msg = "Your Order Has Been Approved Successfully";
-
-      echo $msg2;
+      if(isset($orderApproval)){
+        $msg = $orderApproval;
+      }
     endif;
 
 endif;  ?>
+
+
+<?php if(isset($_POST['cancel_submit'])) : 
+
+  if($_POST['cancel'] == 'cancel' ) :
+
+      $orderCancel = $order->orderCancel($order_id);
+      
+       if(isset($orderCancel)){
+        $msg = $orderCancel;
+      }
+      
+    endif;
+
+endif;  ?>
+
+
+
 
 <?php 
     
     $getSpecificOrder = $order->getSpecificOrderInformation($order_id);
     if($getSpecificOrder) :
-    while($result=$getSpecificOrder->fetch_assoc()) : 
+    while($result=$getSpecificOrder->fetch_assoc()) :
+
+
  ?>
 
 <?php
@@ -48,6 +95,7 @@ endif;  ?>
   <?php
       endif;
   ?>
+
 
 
 
@@ -83,8 +131,8 @@ endif;  ?>
               <div class="row">
                 <div class="col-12">
                   <h4>
-                    <i class="fas fa-globe"></i> EU e-Canteen
-                    <small class="float-right">Date: <?php $order_timestamp = strtotime($result['purchaseAt']); echo date('d/m/y',$order_timestamp);?></small>
+                    <i class="fas fa-concierge-bell"></i> EU e-Canteen
+                    <small class="float-right">Date: <?php $order_timestamp = strtotime($result['purchaseAt']); echo date('d/m/Y g:i a',$order_timestamp);?></small>
                   </h4>
                 </div>
                 <!-- /.col -->
@@ -109,8 +157,11 @@ endif;  ?>
                   <b>Invoice #<?php  echo $result['order_id']; ?></b><br>
                   <br>
                   <b>Order ID: </b> #<?php  echo $result['order_id']; ?><br>
-                  <b>Order Status: &nbsp;<?php echo ($result['order_status'] == 0)  ? '<span class="badge badge-danger">pending</span>' : '<span class="badge badge-success">approved</span>' ?><br>
-
+                  <b>Order Status: &nbsp;
+                  <?php echo $order->OrderStatus($result['order_status']); ?>
+                  
+                  <br>
+				 <b>Payment Status: <?php  echo $order->PaymentStatus($result['payment_status']); ?></b><br>
 
                   
                 </div>
@@ -164,13 +215,9 @@ endif;  ?>
                 <!-- accepted payments column -->
                 <div class="col-6">
                   <p class="lead">Payment Methods:</p>
-                  <img src="../../dist/img/credit/visa.png" alt="Visa">
-                  <img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-                  <img src="../../dist/img/credit/american-express.png" alt="American Express">
-                  <img src="../../dist/img/credit/paypal2.png" alt="Paypal">
 
-                  <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
-                   Some Notes About Payment
+                  <p class="well well-sm shadow-none payment" style="margin-top: 10px;">
+                   <?php echo $result['mode']; ?> <i class="fa fa-money-bill-alt"></i>
                   </p>
                 </div>
                 <!-- /.col -->
@@ -183,18 +230,32 @@ endif;  ?>
                       </tr>
                       <tr>
                         <?php
-                        $getDisocunt = $si->getDiscount();
-                        $discount = $sum*($getDisocunt/100); ?>
-                        <th>Discount  (9.3%)</th>
+
+                        $discount = $sum*($result['discount']/100); ?>
+                        <th>Discount  (<?php echo $result['discount']; ?>%)</th>
                         <td>Tk. <?php echo $discount; ?></td>
                       </tr>
                       <tr>
-                        <th>Shipping:</th>
-                        <td>Tk. 00</td>
+                        <th>Vat: (<?php echo $result['vat']; ?>%)</th>
+                        <td>Tk.<?php echo  $vat = $sum*($result['vat']/100); ?></td>
                       </tr>
                       <tr>
-                        <th>Total:</th>
-                        <td><?php echo ($sum-$discount) ?></td>
+                        <th>Shipping:</th>
+                        <td>Tk. <?php echo $result['shipping']; ?> </td>
+                      </tr>
+                      <tr>
+                        <th>Payment:</th>
+                        <td>Tk. <?php if($result['amount'] == NULL){ 
+                        	echo 0; 
+                        }
+                        else{ echo $result['amount']."&nbsp; (".date("d/m/Y g:i a",$result['paymentAt']).")";  
+                         } ?>
+                        	
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>Total Due:</th>
+                        <td><?php echo ($sum+$vat+$result['shipping']-($discount+$result['amount'])); ?></td>
                       </tr>
                     </table>
                   </div>
@@ -203,28 +264,84 @@ endif;  ?>
               </div>
               <!-- /.row -->
 
-              <!-- this row will not appear when printing -->
-              <div class="row no-print">
+
+
+            <!--Modal For Payment -->
+                
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                            <form action="" method="POST">
+                              <div class="form-group">
+                                <label for="amount">Enter Specific Amout of this order</label>
+                                <input type="text" class="form-control" name="amount" id="amount"  placeholder="Enter amount">
+                                <small style="color: red" class="form-text">Total Due Of this invoice is <strong><?php echo ($sum+$vat+$result['shipping']-($discount+$result['amount'])); ?></strong></small>
+                              </div>
+                            
+                            
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="payment_submit">Submit Payment</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                
+                <!--Close Modal-->
+
+
+              <div class="row">
                 <div class="col-12">
-                  <a href="invoice-print.html" target="_blank" class="btn btn-info"><i class="fas fa-print"></i> Submit Payment</a>
-
-
                   <!-- Pending  -->
                   <?php if($result['order_status'] == 0) : ?>
-
-                  
                   
                   <form action="" method="POST">
                   <input type="hidden" name="approval" value="approved">
                   <button type="submit" class="btn btn-primary float-right" name="approval_submit" style="margin-right: 5px;">
-                     Approve This Order <i class="fas fa-question"></i>
+                     Approve<i class="fas fa-question"></i>
                   </button>
                   </form>
+                  
+                  
 
-                  <?php else : ?>
+                  <?php elseif($result['order_status'] == 1) : ?>
+
+                  	<?php if($result['payment_status'] == 0) : ?>
+				  
+                  <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-info float-right"><i class="fas fa-dollar-sign"></i> Submit Payment</button>
+
+
+                  <form action="" method="POST">
+                  <input type="hidden" name="cancel" value="cancel">
+                  <button type="submit" class="btn btn-danger float-right" name="cancel_submit" style="margin-right: 5px;">
+                     Cancel &nbsp;<i class="fas fa-times"></i>
+                  </button>
+                  </form>
+                  
+                  <?php endif; ?>
+                  
+                  
                     <button type="button" class="btn btn-success float-right" style="margin-right: 5px;" disabled>
                      Approved <i class="fas fa-check-circle"></i>
                   </button>
+                  
+
+                  
+                  
+                  <?php elseif($result['order_status'] == 2) : ?>
+                    <button type="button" class="btn btn-danger float-right" style="margin-right: 5px;" disabled>
+                     Cancelled <i class="fas fa-check-circle"></i>
+                  </button> <br>
                   <?php endif;  ?>
 
                 </div>

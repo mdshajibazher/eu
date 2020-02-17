@@ -13,18 +13,18 @@
 			$this->fm = new Format;
 		}
 
-    public function getTotalOrder(){
+    public function getTotalOrderCount(){
         	$query = "SELECT id FROM item_sold";
 			$result = $this->db->select($query);
 			return $result;
     }
-    public function getPendingOrder(){
+    public function getPendingOrderCount(){
         	$query = "SELECT id FROM item_sold WHERE order_status=0";
 			$result = $this->db->select($query);
 			return $result;
     }
-    public function getCancelledOrder(){
-        	$query = "SELECT id FROM item_sold WHERE order_status=2";
+    public function getCancelledOrderCount(){
+        	$query = "SELECT id  FROM item_sold WHERE order_status=2";
 			$result = $this->db->select($query);
 			return $result;
     }
@@ -34,6 +34,19 @@
 		$result = $this->db->select($query);
 		return $result;
     }
+
+
+    public function getPendingOrderInformation(){
+	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_status=0";
+		$result = $this->db->select($query);
+		return $result;
+    }
+    public function getCancelOrderInformation(){
+	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_status=2";
+		$result = $this->db->select($query);
+		return $result;
+    }
+
     public function getSpecificOrderInformation($id){
 	    $query = "SELECT item_sold.*,students_table.*, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_id='$id'";
 		$result = $this->db->select($query);
@@ -44,10 +57,67 @@
 		$result = $this->db->select($query);
 		return $result;
     }
+    
+    
 
     public function orderApproval($id){
     	$query = "UPDATE item_sold SET order_status =1 WHERE order_id='$id'";
-		$catUpdate = $this->db->update($query);
+		$OrderStatus = $this->db->update($query);
+		if($OrderStatus){
+		   $msg = "Your Order Has Been Approved Successfully";
+		   return $msg;
+		}
+		
+    }
+
+    public function StorePayment($id, $amount){
+    	$current_timestamp = time();
+    	$query = "UPDATE item_sold SET amount ='$amount',paymentAt='$current_timestamp', payment_status=1 WHERE order_id='$id'";
+		$result = $this->db->update($query);
+		if($result){
+		   $msg = "Payment Submitted Successfully";
+		   return $msg;
+		}
+		
+    }
+
+
+
+    public function orderCancel($id){
+    	$query = "UPDATE item_sold SET order_status =2 WHERE order_id='$id'";
+		$OrderStatus = $this->db->update($query);
+		if($OrderStatus){
+		   $msg = "Your Order Has Been Cancelled Successfully";
+		   return $msg;
+		}
+    }
+
+    public function OrderStatus($status){
+
+    	if($status == 0){
+                  $order_status_msg = '<span class="badge badge-warning">pending</span>';
+                  
+                  }elseif($status == 1){
+                        $order_status_msg =  '<span class="badge badge-success">approved</span>';
+                  }else{
+                  
+                    $order_status_msg = '<span class="badge badge-danger">Cancelled</span>';
+          }
+
+
+          return $order_status_msg;
+    }
+
+    public function PaymentStatus($status){
+
+    	if($status == 0){
+                  $order_payment_msg = '<span class="badge badge-warning">pending</span>';
+                  
+                  }elseif($status == 1){
+                        $order_payment_msg =  '<span class="badge badge-success">paid</span>';
+                  }
+
+          return $order_payment_msg;
     }
     
 

@@ -1,3 +1,8 @@
+  <?php
+    include('../classes/Notification.php');
+  ?>
+  
+  
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -31,30 +36,42 @@
       <!-- Messages Dropdown Menu -->
       
       <!-- Notifications Dropdown Menu -->
+      
+    <?php
+    
+        $nt = new Notification;
+        $getTotalUnreadOrder = $nt->getTotalUnreadOrder();
+        $notification = $nt->OrderNotificationInf();
+    
+    ?>
+      
+      
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-danger navbar-badge"><?php echo $getTotalUnreadOrder->num_rows;  ?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header"><?php echo $getTotalUnreadOrder->num_rows;  ?> Notifications</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+          <?php
+          if($notification) :
+             while($NotificationResult = $notification->fetch_assoc()) :
+            $user_id = $NotificationResult['user_id'];
+          ?>
+          
+          <a href="order-details.php?id=<?php echo $NotificationResult['order_id'] ?>&&read=1" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> New Order #<?php echo $NotificationResult['order_id'];  ?> From <?php echo  $nt->getUserName($user_id);  ?> <br>
+            <span class="text-muted text-sm"><?php 
+            
+             $ago =  $nt->time_elapsed_string($NotificationResult['purchaseAt'],'false');
+             echo $ago;
+             ?></span>
           </a>
+          
+          
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+         <?php endwhile; endif;  ?>
         </div>
       </li>
 

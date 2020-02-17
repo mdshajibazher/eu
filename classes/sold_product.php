@@ -38,11 +38,11 @@
 			return $result;
 		}
 
-		public function getDiscount(){
-			$query = "SELECT discount FROM general_information";
+		public function getDiscountVatShipping(){
+			$query = "SELECT discount, vat, shipping  FROM general_information";
 			$result = $this->db->select($query);
-			while ($getCurrentDisocunt = $result->fetch_assoc()) {
-                return  $getCurrentDisocunt['discount'];
+			while ($getDiscountVatShipping = $result->fetch_assoc()) {
+                return  $getDiscountVatShipping;
             }
 		}
 		public function orderCheck($oid,$sid){

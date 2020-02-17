@@ -20,7 +20,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Show Order Information</h1>
+            <h1>Pending Order Information</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@
                         </thead>
                         <tbody>
                        <?php 
-                            $getOrder = $order->getOrderInformation();
+                            $getOrder = $order->getPendingOrderInformation();
                             if($getOrder){
                             while($result=$getOrder->fetch_assoc()) {
                          ?>
