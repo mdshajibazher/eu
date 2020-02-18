@@ -54,6 +54,10 @@ $user_id = $OrderResult['user_id'];
 $order_id = $OrderResult['order_id'];
 $payement_mode = $OrderResult['payment_mode'];
 $payement_status = $OrderResult['payment_status'];
+$discount = $OrderResult['discount'];
+$vat = $OrderResult['vat'];
+$shipping = $OrderResult['shipping'];
+$payment = $OrderResult['amount'];
 $purchaseDate = date( "d/m/Y g:i a", strtotime($OrderResult['purchaseAt']));
 
 ?>
@@ -118,6 +122,8 @@ $product_qty = $sresult['quantity'];
 $price = $sresult['price'];
 $total_price = $price*$product_qty;
 $sum = $sum+$total_price;
+$ProductDiscount = $sum*($discount/100);
+$ProductVat= $sum*($vat/100);
 
 
 
@@ -130,7 +136,7 @@ $sum = $sum+$total_price;
           <td><?php echo $sresult['productname']; ?></td>
           <td><?php echo $sresult['quantity']; ?></td>
           <td><?php echo $sresult['price']; ?></td>
-          <td><?php echo $sum; ?></td>
+          <td><?php echo $total_price; ?></td>
       </tr>
 
 
@@ -149,8 +155,34 @@ $sum = $sum+$total_price;
 
       </tbody>
   </table>
-
-  
+<div class="row">
+ <div class="col-md-6"></div>
+  <div class="col-md-6">
+            <table class="table-responsive-sm table table-bordered">
+              <tbody><tr>
+                <th>Sub Total : </th>
+                <td>TK. <?php echo $sum; ?></td>
+              </tr>
+              <tr>
+                <th>Discount (<?php echo $discount; ?>%) :  </th>
+                <td>Tk - <?php echo $ProductDiscount; ?></td>
+              </tr>
+              <tr>
+                  <th>VAT (<?php echo $vat; ?>%):   </th>
+                <td>Tk + <?php echo $ProductVat; ?></td>
+              </tr>
+              <tr>
+                  <th>Shipping : </th>
+                <td>Tk + <?php echo $shipping; ?></td>
+              </tr>
+              <tr>
+                <th>Grand Total :</th>
+                <td>TK. <?php echo ($sum+$ProductVat+$shipping)-($ProductDiscount+$payment) ?></td>
+              </tr>
+              
+             </tbody></table>
+             </div>
+             </div>
 
     <div class="pdf-link">
       <a class="btn btn-success" target="_blank" href="pdf/ex.php?order_id=<?php echo $_GET['order_id']; ?>&session_id=<?php echo session_id(); ?>">Download Invoice</a>
