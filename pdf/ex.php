@@ -59,28 +59,26 @@ $pdf->addClientAdresse("$address");
   }
 }
 $pdf->addPaymentMethod($payement_mode);
-// $pdf->addEcheance("03/12/2003");
 $pdf->addpaymentStatus($payement_status);
+
 $pdf->addReference("");
 
 
 $cols=array( "Sl."    => 23,
              "PRODUCT"  => 78,
              "QUANTITE"     => 22,
-             "PRICE"      => 26,
-             "TOTAL" => 30,
-             "REF"          => 11 );
+             "PRICE"      => 30,
+             "TOTAL" => 30);
 $pdf->addCols( $cols);
 $cols=array( "Sl."    => "L",
              "PRODUCT"  => "L",
              "QUANTITE"     => "C",
              "PRICE"      => "R",
-             "TOTAL" => "R",
-             "REF"          => "C" );
+             "TOTAL" => "R");
 $pdf->addLineFormat( $cols);
-$pdf->addLineFormat($cols);
 
-$y    = 109;
+
+$y    = 92;
 
 
 $getcartInf= $si->getCartInformation($order_id);
@@ -100,16 +98,21 @@ $total_price = $price*$product_qty;
 
 
 $sum = $sum+$total_price;
-$discount = $sum*.1;
-$payable = $sum-$discount;
+
+$discount = $sum*($result['discount']/100);
+$vat = $sum*($result['vat']/100);
+$shipping = $result['shipping'];
+$amount = $result['amount'];
+
+
+$payable = ($sum+$vat+$shipping)-($discount+$amount);
 $line = array( "Sl."    => $j,
                "PRODUCT"  => $productName ."\n\n",
                "QUANTITE"     => $product_qty,
                "PRICE"      => $price,
-               "TOTAL" => $total_price,
-               "REF"          => "0" );
+               "TOTAL" => $total_price);
 $size = $pdf->addLine( $y, $line );
-$y   += $size + 2;
+$y   += $size + 1;
 
 } }
 
@@ -119,7 +122,7 @@ $y   += $size + 2;
 } }
 
 
-$pdf->totalAmountBox($sum, $discount, $payable);
+$pdf->totalAmountBox($sum, $discount,$vat, $shipping,$amount, $payable);
 $pdf->Output();
 ob_end_flush();
 ?>

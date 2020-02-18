@@ -62,15 +62,12 @@ if(isset($_POST['order_submit'])){
 
 <?php if(isset($_SESSION['custom_order_date']) && isset($_SESSION['custom_order_date'])){ ?>
 
-
-
+  <div class="wrapper-bg">
+      
         <div class="row">
           <div class="col-md-9">
             
-        
-
-
-  
+      
     <div class="checkout-content">
       <div class="cartoption">    
       <div class="cartpage table-responsive-sm">
@@ -266,7 +263,7 @@ if(isset($_POST['order_submit'])){
          </div>
         </div>
 
-
+      </div>
 
 
 

@@ -4,30 +4,25 @@
   
 <?php include('inc/top_nav.php'); ?>
 <?php include('inc/sidebar.php'); ?>
-
-<?php include  '../classes/brand.php'; ?>
-<?php include  '../classes/category.php'; ?>
+<?php include  '../classes/general_inf.php'; ?>
 
 <?php 
 
-  $ct = new Category;
-  $cat_id = $_GET['id'];
-  if(isset($_POST['submit'])){
-        $category_name = $_POST['category_name'];
-        $updateCategory = $ct->catUpdate($category_name,$cat_id);
-
+  $gi = new GeneralInf;
+  if(isset($_POST['update_inf'])){
+        $updateGenaralInf = $gi->updateGeneralInforamtion($_POST);
     }
 ?>
 
 <script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"2500","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
 <?php
-  if(isset($updateCategory)) : 
-  foreach ($updateCategory as  $msg) :  
+  if(isset($updateGenaralInf)) : 
+  foreach ($updateGenaralInf as  $msg) :  
 
     if($msg == 'success') :
   ?>
       
-  toastr.success('<?php echo "Category Updated Successfully" ?>', 'Confirmation Message');
+  toastr.success('<?php echo "General Information Updated Successfully" ?>', 'Confirmation Message');
 
   <?php 
       else: ?>
@@ -47,7 +42,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit Category</h1>
+            <h1>Edit General Information</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -68,41 +63,87 @@
 
 
             <!-- Horizontal Form -->
-            <div class="card card-info">
+            <div class="card card-warning">
               <div class="card-header">
-                <h3 class="card-title">Edit Existing Category</h3>
+                <h3 class="card-title">Edit Genereal Information</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form class="form-horizontal" action="" method="POST">
                 <div class="card-body">
-                  <div class="form-group row">
-                    <label for="productname" class="col-sm-3 col-form-label">Category Name</label>
-                    <div class="col-sm-9">
-                        
-                       <?php 
-                       $getGenralinf = $ct->getGeneralInforamtion();
+                  
+                    <?php 
+                       $getGenralinf = $gi->getGeneralInforamtion();
                        if($getGenralinf) : 
                            while($getGenralinfresult = $getGenralinf->fetch_assoc()) :
-                       ?>
-                       
-                      <input type="text" class="form-control" id="category_name" placeholder="Enter Category Name" name="category_name" value="<?php if(isset($_POST['category_name'])){ echo $_POST['category_name']; } else{
-                            echo $CatResult['catname'];
-                      }?>">
+                    ?>
 
-                      <?php endwhile; endif; ?>
+                  <div class="form-group row">
+                    <label for="site_title" class="col-sm-3 col-form-label">Site Title</label>
+                    <div class="col-sm-9">                        
+                      <input type="text" class="form-control" id="site_title" placeholder="Enter Category Name" name="site_title" value="<?php if(isset($_POST['site_title'])){ echo $_POST['site_title']; } else{
+                            echo $getGenralinfresult['site_title'];
+                      }?>">
+                      <p style="color: red"><?php if(isset($updateGenaralInf['site_title'])){ echo $updateGenaralInf['site_title'];} ?></p>
+
                       
-                      <p style="color: red"><?php if(isset($updateCategory['empty'])){ echo $updateCategory['empty'];} ?></p>
+                      
+                      
                     </div>
                     
                   </div>
 
 
 
+                  <div class="form-group row">
+                    <label for="discount" class="col-sm-3 col-form-label">Discount</label>
+                    <div class="col-sm-9">                        
+                      <input type="number" class="form-control" id="discount" placeholder="Enter Discount Percentage" name="discount" value="<?php if(isset($_POST['discount'])){ echo $_POST['discount']; } else{
+                            echo $getGenralinfresult['discount'];
+                      }?>">                      
+                      
+                      <p style="color: red"><?php if(isset($updateGenaralInf['discount'])){ echo $updateGenaralInf['discount'];} ?></p>
+                    </div>
+                    
+                  </div>
+
+
+                <div class="form-group row">
+                    <label for="vat" class="col-sm-3 col-form-label">Vat</label>
+                    <div class="col-sm-9">                        
+                      <input type="number" class="form-control" id="vat" placeholder="Enter Vat Percentage" name="vat" value="<?php if(isset($_POST['vat'])){ echo $_POST['vat']; } else{
+                            echo $getGenralinfresult['vat'];
+                      }?>">                      
+                      
+
+                      <p style="color: red"><?php if(isset($updateGenaralInf['vat'])){ echo $updateGenaralInf['vat'];} ?></p>
+                    </div>
+                    
+                  </div>
+
+
+
+
+
+                <div class="form-group row">
+                    <label for="shipping" class="col-sm-3 col-form-label">Shipping</label>
+                    <div class="col-sm-9">                        
+                      <input type="number" class="form-control" id="shipping" placeholder="Enter Shipping Amount" name="shipping" value="<?php if(isset($_POST['shipping'])){ echo $_POST['shipping']; } else{
+                            echo $getGenralinfresult['shipping'];
+                      }?>">                      
+                      
+                      <p style="color: red"><?php if(isset($updateGenaralInf['shipping'])){ echo $updateGenaralInf['shipping'];} ?></p>
+                    </div>
+                    
+                  </div>
+
+
+              <?php endwhile; endif; ?>
+
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer text-center">
-                  <button type="submit" class="btn btn-info" name="submit">Submit</button>
+                  <button type="submit" class="btn btn-warning" name="update_inf">Update</button>
                   
                 </div>
                 <!-- /.card-footer -->

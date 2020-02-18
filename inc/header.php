@@ -104,7 +104,6 @@
                   <ul class="menu" id="menu">
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="user_dashboard.php">My Account</a></li>
-                    <li><a href="#">About Developers</a></li>
                     <li><a href="?action=logout">Logout</a></li>
                     <?php if(isset($_GET['action']) && $_GET['action'] == 'logout'){
                           session_destroy();
@@ -122,5 +121,6 @@
 
     </nav>
     <!-- end .nav-bar -->
+      </div>
       </div>
       </div>

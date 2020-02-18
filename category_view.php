@@ -10,7 +10,7 @@
       <?php if(isset($_SESSION['custom_order_date']) && isset($_SESSION['custom_order_date'])){ ?>
 
       
-
+        <div class="wrapper-bg">
         <div class="row">
           <div class="col-md-9">
             
@@ -129,7 +129,7 @@
               </div>
          </div>
         </div>
-
+      </div>
 
 
 

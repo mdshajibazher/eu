@@ -24,21 +24,38 @@
 	}
 
 	public function updateGeneralInforamtion($postmethod){
+			$err = array();
 			$site_title = $postmethod['site_title'];
 			$discount = $postmethod['discount'];
 			$vat = $postmethod['vat'];
-			$processing_fee = $postmethod['processing_fee'];
-			$query = "UPDATE general_information SET site_title='$site_title', discount='$discount',vat='$vat',processing_fee='$processing_fee' WHERE id='1'";
+			$shipping = $postmethod['shipping'];
+
+			if($site_title == NULL){
+				$err['site_title'] = 'Site Title Field Must Not Be Empty';
+			}
+			if($discount == NULL){
+				$err['discount'] = 'DiscountField Must Not Be Empty';
+			}
+			if($vat == NULL){
+				$err['vat'] = 'Vat Title Field Must Not Be Empty';
+			}
+			if($shipping == NULL){
+				$err['shipping'] = 'Shipping Field Must Not Be Empty';
+			}
+			if(count($err)==NULL){
+			 $query = "UPDATE general_information SET site_title='$site_title', discount='$discount',vat='$vat',shipping='$shipping' WHERE id='1'";
 			$result = $this->db->update($query);
 			if($result){
-					$msg = "<span style='color: green'>Infromation Updated Successful</span>";
-					return $msg;
+					$err['suceess'] = 'success';
+					header('Refresh: 3; url=index.php');
 				}else{
-					$msg = "<span style='color: red'>Not Updated</span>";
-					return $msg;
+					$err['error'] = 'error';
 				}
 			
-			return $result;
+
+			}
+
+			return $err;
 	}
 
 

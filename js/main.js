@@ -1,6 +1,8 @@
 (function ($) {
 "use strict"
 
+
+
 // mobile menu
 $(document).ready(function(){
 	$('.menu-button').click(function(){
@@ -12,7 +14,7 @@ $(document).ready(function(){
 
 //payment method
   $(document).ready(function(){
-    $("#sticker").sticky({topSpacing:0});
+
   $(".add-to-cart.btn").click(function(){
     $(this).text('success');
     $(this).addClass('animated tada');
@@ -27,6 +29,14 @@ $('#orderDate input').datepicker({
     orientation    : "right",
     format : "dd-mm-yyyy"
 });
+
+
+//Sticky Js //Sticky Js
+
+ $("#sticker").sticky({topSpacing:0});
+
+
+
 
 
   });

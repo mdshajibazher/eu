@@ -10,7 +10,7 @@
       <?php if(isset($_SESSION['custom_order_date']) && isset($_SESSION['custom_order_date'])){ ?>
 
       
-
+        <div class="wrapper-bg">
         <div class="row">
           <div class="col-md-9">
             
@@ -38,10 +38,9 @@
 
               <div class="link">
                     <h4>Tk <?php echo $result['price']; ?></h4>
-                    <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
+                    <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-success">Add to cart</a>
                     </div>
-                    <a class="btn-details" href="single.php?id=<?php echo $result['productid']; ?>"><i class="fa fa-eye"></i></a>
-
+                    
               </div>
 
          <?php } }  ?>
@@ -124,6 +123,7 @@
               </div>
          </div>
         </div>
+      </div>
 
 
 

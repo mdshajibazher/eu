@@ -4,42 +4,41 @@
 
 
 
-      
-            <div class="section-title"><span>User Dashboard</span></div>
+          <div class="userdashboard-wrapper-bg">
                 <div class="row">
                     
-                    <div class="col-md-2">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="">My Orders</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="">Pending Order</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="">Cancel Order</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="">Food Item Request</a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="">Complain</a>
-                            </li>
-                            
 
-                        </ul>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card card-default">
-    <div class="card-header">
-        Orders
-    </div>
+            <div class="section-title">
+                      <span>User Dashboard</span>
+              </div>
+
+
+        <div class="col-md-2">
+            <ul class="list-group user-link">
+                <li class="list-group-item">
+                    <a href="">My Orders</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="">Food Item Request</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="">Complain</a>
+                </li>
+            </ul>
+        </div>
 
 
 
-    
-    <div class="card-body">
-		<table class="table table-bordered" style="font-size: 14px">
+
+
+            <div class="col-md-10">
+               <div class="card card-default">
+                <div class="card-header">
+                    Orders
+                </div>
+                
+                <div class="card-body table-responsive">
+                        <table class="table table-bordered" style="font-size: 14px">
   <thead class="table-dark">
     <tr>
       <th>#</th>
@@ -98,11 +97,18 @@
 
   </tbody>
 </table>
-    </div>
-</div>
-</div>
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+
         </div>
       </div>
+
 
 
          

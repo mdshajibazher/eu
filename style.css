@@ -90,6 +90,9 @@ border-color: transparent rgba(0,0,0,.6) transparent transparent;
 border-style: solid;
 display: block;
 }
+.wrapper-bg{
+  background: #fff;
+}
 /*----------------------------------------------------
 Header Area
 ----------------------------------------------------*/
@@ -266,9 +269,10 @@ text-align: right;
     clear: both;
 }
 
-.Product-Area{
+.Product-Area, .confirmation-wrapper{
   padding: 10px;
   height: 100%;
+  background: #fff;
 }
 .product-title{
   position: absolute;
@@ -416,6 +420,7 @@ Categories Sidebar
 --------------------------------------------*/
 .categories, .sidebar{
 border-left: 1px dashed #ccc;
+background: #fff;
 }
 .cat-right{
     padding: 25px 0;
@@ -594,7 +599,7 @@ Chekout Page
 ------------------------------*/
 .checkout-content{
     background: #fff;
-    padding: 40px 0;
+    padding: 30px;
     height: 100%;
 }
 .cartpage {
@@ -685,10 +690,16 @@ form.dateinput_form.form-control:disabled, .form-control[readonly]{
 }
 .confirmation-wrapper{
   height: 100%;
-  margin: 20px 20px 0px 20px;
 }
 .order-date-wrapper{
   background: #f1f2f6;
   margin: auto;
   width: 100%
+}
+.userdashboard-wrapper-bg{
+  background: #fff;
+  padding: 20px
+}
+.user-link li a{
+  color: #000;
 }

@@ -23,13 +23,20 @@
     }
     .cart-item-count{
         float: none;
+        position: absolute;
+        top: -81px;
+        right: 35px;
     }
     .cart-item-count a span {
     	left: 50%;
     	margin-left: -11px;
      }
+     .search-box{
+        margin-bottom: 0px;
+     }
     .menu-area{
         background: none;
+        position: relative;
     }
     .button-wrapper{
     	background: #f1c40f;
@@ -38,21 +45,28 @@
      #menu{
         display: none;
         margin: 0 auto;
-        padding: 13px 0px;
-        width: 90%;
-        background:#34495e;
+        padding: 5px 0px;
+        width: 100%;
+        background:#f1f2f6;
         border-radius: 5px;
+        position: absolute;
+        top: 42px;
+        left: 0;
+        z-index: 999;
+        
      }
 
     .menu-area ul.menu li{
         float: none;
-		margin: 7px 4px;
-		background: #f1c40f;
-		border-radius: 5px;
-		text-align: center;
+        margin: 5px 10px;
+        background: #f1c40f;
+        border-radius: 5px;
+        text-align: center;
     }
     .menu-area ul.menu li a{
     	font-weight: bold;
+        padding: 6px;
+        color: #000;
 
     }
      .menu-button{
@@ -61,9 +75,7 @@
     .float-information{
         display: none;
     }
-    .search-box{
-        margin-bottom: 50px;
-    }
+
     .search-box .input-group{
         padding: 0px 10px;
     }
@@ -82,9 +94,9 @@
 
     }
     .dateinput_form{
-        width: 280px;
+        width: 85%;
         margin: 22px auto;
-        padding: 36px 5px;
+        padding: 35px 16px;
         border-radius: 8px;
     }
     a.btn-details{
@@ -92,9 +104,13 @@
         margin-top: -25px;
         font-size: 25px;
         padding: 5px 10px;
+        display: block;
     }
     .tblone th {
         font-size: 12px;
+    }
+    .btn-custom{
+        padding: 7px 13px;
     }
 
 }

@@ -5,7 +5,6 @@
 <?php include('inc/top_nav.php'); ?>
 <?php include('inc/sidebar.php'); ?>
 
-<?php include  '../classes/brand.php'; ?>
 <?php include  '../classes/product.php'; ?>
 <?php include  '../classes/category.php'; ?>
 

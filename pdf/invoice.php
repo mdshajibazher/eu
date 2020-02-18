@@ -225,7 +225,7 @@ function addClient( $ref )
 	$this->Line( $r1, $mid, $r2, $mid);
 	$this->SetXY( $r1 + ($r2-$r1)/2 - 5, $y1+3 );
 	$this->SetFont( "Arial", "B", 10);
-	$this->Cell(10,5, "CLIENT", 0, 0, "C");
+	$this->Cell(10,5, "ID", 0, 0, "C");
 	$this->SetXY( $r1 + ($r2-$r1)/2 - 5, $y1 + 9 );
 	$this->SetFont( "Arial", "", 10);
 	$this->Cell(10,5,$ref, 0,0, "C");
@@ -277,7 +277,7 @@ function addPaymentMethod( $mode )
 {
 	$r1  = 10;
 	$r2  = $r1 + 60;
-	$y1  = 80;
+	$y1  = 60;
 	$y2  = $y1+10;
 	$mid = $y1 + (($y2-$y1) / 2);
 	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
@@ -314,7 +314,7 @@ function addpaymentStatus($tva)
 	$this->SetFont( "Arial", "B", 10);
 	$r1  = $this->w - 80;
 	$r2  = $r1 + 70;
-	$y1  = 80;
+	$y1  = 60;
 	$y2  = $y1+10;
 	$mid = $y1 + (($y2-$y1) / 2);
 	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
@@ -332,7 +332,7 @@ function addReference($ref)
 	$length = $this->GetStringWidth( "REFERENCE : " . $ref );
 	$r1  = 10;
 	$r2  = $r1 + $length;
-	$y1  = 92;
+	$y1  = 73;
 	$y2  = $y1+5;
 	$this->SetXY( $r1 , $y1 );
 	$this->Cell($length,4, "REFERENCE : " . $ref);
@@ -344,7 +344,7 @@ function addCols( $tab )
 	
 	$r1  = 10;
 	$r2  = $this->w - ($r1 * 2) ;
-	$y1  = 100;
+	$y1  = 80;
 	$y2  = $this->h - 50 - $y1;
 	$this->SetXY( $r1, $y1 );
 	$this->Rect( $r1, $y1, $r2, $y2, "D");
@@ -466,29 +466,41 @@ function addCadreTVAs()
 	$this->Cell(6,0, "T.V.A. :");
 }
 
-function totalAmountBox($total_amount, $total_discount, $net_amount)
+function totalAmountBox($total_amount, $total_discount,$vat, $shipping,$amount, $net_amount)
 {
 	$r1  = $this->w - 70;
 	$r2  = $r1 + 60;
-	$y1  = $this->h - 40;
-	$y2  = $y1+20;
+	$y1  = $this->h - 49;
+	$y2  = $y1+35;
 	$this->RoundedRect($r1, $y1, ($r2 - $r1), ($y2-$y1), 2.5, 'D');
 	$this->Line( $r1+20,  $y1, $r1+20, $y2); // avant EUROS
 	$this->Line( $r1+20, $y1+4, $r2, $y1+4); // Sous Euros & Francs
-	//$this->Line( $r1+38,  $y1, $r1+38, $y2); // Entre Euros & Francs
 	$this->SetFont( "Arial", "B", 8);
 	$this->SetXY( $r1+22, $y1 );
-	$this->Cell(35,4, "Specifications", 0, 0, "C");
+	$this->Cell(35,4, "AMOUNT", 0, 0, "C");
 	$this->SetXY( $r1+42, $y1 );
-	$this->SetXY( $r1, $y1+5 );
-	$this->Cell(20,4, "AMOUNT", 0, 0, "C");
+	$this->SetXY( $r1, $y1+4 );
+	$this->Cell(20,4, "TOTAL", 0, 0, "C");
 	$this->Cell(20,4, $total_amount."/- BDT", 0, 0, "C");
-	$this->SetXY( $r1, $y1+10 );
+	$this->SetXY( $r1, $y1+8 );
 	$this->Cell(20,4, "DISCOUNT", 0, 0, "C");
 	$this->Cell(20,4,  $total_discount."/- BDT", 0, 0, "C");
-	$this->SetXY( $r1, $y1+15 );
-	$this->Cell(20,4, "PAYABLE", 0, 0, "C");
+	$this->SetXY( $r1, $y1+12 );
+	$this->Cell(20,4, "VAT", 0, 0, "C");
+	$this->Cell(20,4,  $vat."/- BDT", 0, 0, "C");
+
+	$this->SetXY( $r1, $y1+16 );
+	$this->Cell(20,4, "SHIPPING", 0, 0, "C");
+	$this->Cell(20,4,  $shipping."/- BDT", 0, 0, "C");
+	$this->SetXY( $r1, $y1+20 );
+	$this->Cell(20,4, "PAYMENT", 0, 0, "C");
+	$this->Cell(20,4,  $amount."/- BDT", 0, 0, "C");
+	$this->SetXY( $r1, $y1+24 );
+	$this->Cell(20,4, "NET DUE", 0, 0, "C");
 	$this->Cell(20,4,  $net_amount."/- BDT", 0, 0, "C");
+
+
+
 
 
 }
