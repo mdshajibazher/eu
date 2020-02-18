@@ -48,14 +48,13 @@ if($_GET['order_id'] == NULL){
 $getsoldItem= $si->getSpecificSoldItem($oid);
 if($getsoldItem){
   $i=0;
-  while($result=$getsoldItem->fetch_assoc()){
+  while($OrderResult=$getsoldItem->fetch_assoc()){
 
-$user_id = $result['user_id'];
-$order_id = $result['order_id'];
-$purchaseDate = 
-$payement_mode = $result['payment_mode'];
-$payement_status = $result['payment_status'];
-$purchaseDate = date( "d/m/Y g:i a", strtotime($result['purchaseAt']));
+$user_id = $OrderResult['user_id'];
+$order_id = $OrderResult['order_id'];
+$payement_mode = $OrderResult['payment_mode'];
+$payement_status = $OrderResult['payment_status'];
+$purchaseDate = date( "d/m/Y g:i a", strtotime($OrderResult['purchaseAt']));
 
 ?>
       <tr>
@@ -118,11 +117,11 @@ $productName = $sresult['productname'];
 $product_qty = $sresult['quantity'];
 $price = $sresult['price'];
 $total_price = $price*$product_qty;
-
-
 $sum = $sum+$total_price;
-$discount = $sum*.1;
-$payable = $sum-$discount;
+
+
+
+
 
 ?>
       <tr>
@@ -154,7 +153,6 @@ $payable = $sum-$discount;
   
 
     <div class="pdf-link">
-      <p class="page_title">Net Payable Amount: (<?php  echo $sum ?>-<?php  echo $discount ?>) = <?php echo $payable ?>Tk</p>
       <a class="btn btn-success" target="_blank" href="pdf/ex.php?order_id=<?php echo $_GET['order_id']; ?>&session_id=<?php echo session_id(); ?>">Download Invoice</a>
     </div>
     

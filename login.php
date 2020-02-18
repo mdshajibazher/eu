@@ -19,7 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="pappu">
         <meta name="description" content="Shajib Azher">
-
+          <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
         <title>Login</title>
         <link href="css/login.css" rel="stylesheet">
     </head>
