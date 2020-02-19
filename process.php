@@ -38,16 +38,7 @@
          $inserted_rows = $db->insert($query);
     	
     }
-    echo $order_count."&session_id=".$sid;
-    // if ($inserted_rows) {
-    //  $query2 = "INSERT INTO item_sold(user_id,order_id, payment_mode, payment_status, delivery_status) VALUES('$userid','$order_count','COD','UNPAID', 'Not Delivered')";
-    // $inserted = $db->insert($query2);
-    //     if($inserted){ echo "Order Created Successfull"; }
-    // }
-    // else {
-    //     echo "<span class='error'>Not Inserted !</span>";
-    // }
+    echo $order_count."&token=".$sid;
 
-    //echo "Name".$tp[1]['name'];
 
 ?>

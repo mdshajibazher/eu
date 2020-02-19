@@ -13,6 +13,20 @@
 			$this->fm = new Format;
 		}
 
+
+
+    public function CartCehck($cartid, $token){
+        	$query = "SELECT * FROM cart_table WHERE cartid='$cartid' AND session_id='$token'";
+			$result = $this->db->select($query);
+			return $result;
+    }
+
+    public function DeleteCart($cartid){
+        	$query = "DELETE FROM cart_table WHERE cartid='$cartid'";
+			$result = $this->db->select($query);
+			return $result;
+    }
+
     public function getTotalOrderCount(){
         	$query = "SELECT id FROM item_sold";
 			$result = $this->db->select($query);
