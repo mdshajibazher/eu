@@ -31,7 +31,7 @@ $order_discount = $_POST['discount'];
 $order_vat = $_POST['vat'];
 $order_shipping_charge = $_POST['shipping'];
 $notes = $_POST['notes'];
-$query2 = "INSERT INTO item_sold(user_id, session_id, discount,vat,shipping,order_id, payment_mode, payment_status, delivery_status,custom_order_date,notes,ip_address ,serve_hour) VALUES('$userid','$sid','$order_discount','$order_vat','$order_shipping_charge','$oid','$payment_mod','0','Not Delivered','$custom_order_date','$notes','$ip_addr', '$serve_hour')";
+$query2 = "INSERT INTO item_sold(user_id, session_id, discount,vat,shipping,order_id, payment_mode, payment_status, delivery_status,custom_order_date,notes,ip_address ,serve_hour) VALUES('$userid','$token','$order_discount','$order_vat','$order_shipping_charge','$oid','$payment_mod','0','Not Delivered','$custom_order_date','$notes','$ip_addr', '$serve_hour')";
 $insert = $db->insert($query2);
 if($insert){
 echo "<script>window.location = 'confirmation.php?order_id=".$oid."';</script>";
