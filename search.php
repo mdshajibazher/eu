@@ -47,7 +47,17 @@
                     
               </div>
 
-         <?php } }  ?>
+         <?php } }else{ ?>
+
+            <div class="item-404">
+              <h1 class="display-5 text-center">404 Oops! No Item Found</h1>
+              <p class="text-muted">
+            We could not find the product you were looking for.
+            Meanwhile, you may  return to <a href="index.php">Homepage</a> or try amother on the search form.</p>
+            </div>
+             
+
+        <?php  } ?>
 
         </div>
 

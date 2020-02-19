@@ -83,6 +83,10 @@ var options = {
   list: {
     match: {
       enabled: true
+    },
+    onClickEvent: function() {
+      var itemName = $("#search").val();
+      window.location = 'search.php?s='+itemName;
     }
   },
 

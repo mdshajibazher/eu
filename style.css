@@ -681,3 +681,8 @@ form.dateinput_form.form-control:disabled, .form-control[readonly]{
 .user-link li a{
   color: #000;
 }
+.item-404{
+    width: 50%;
+    margin: 100px auto;
+    text-align: center;
+}
