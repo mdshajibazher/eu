@@ -61,35 +61,10 @@ body{
     padding: 3px 5px;
      border-radius: 3px;
 }
-.float-information {
-  writing-mode: vertical-lr;
-  text-orientation: mixed;
-  position: fixed;
-  top: 50%;
-  right: 0;
-  margin-top: -163px;
-  background: rgba(0,0,0,.6);
-  color: #fff;
-  padding: 10px 5px;
-  height: 290px;
-  font-size: 13px;
-  border-radius: 10px 0 0 10px;
-  box-shadow: 2px 2px 10px #000;
-  font-weight: ;
-  z-index: 99;
+.order-date-badge{
+  line-height: 92px;
 }
 
-.float-information::after{
-content: '';
-position: absolute;
-top: 50%;
-margin-top: -90px;
-left: -20px;
-border-width: 10px;
-border-color: transparent rgba(0,0,0,.6) transparent transparent;
-border-style: solid;
-display: block;
-}
 .wrapper-bg{
   background: #fff;
 }
@@ -104,7 +79,10 @@ Header Area
 }
 .search-box .input-group{
     margin: 28px 0;
-    padding: 0 30px;
+}
+.search-box{
+    float: right;
+    margin-right: 31px;
 }
 .search-box input{
 background: #ecf0f1;

@@ -4,7 +4,6 @@
 
 <?php include('inc/top_nav.php'); ?>
 <?php include('inc/sidebar.php'); ?>
-<?php include  '../classes/brand.php'; ?>
 <?php include  '../classes/product.php'; ?>
 <?php include  '../classes/category.php'; ?>
 
@@ -19,6 +18,7 @@
 
   if(isset($_POST['submit'])){
         $UpdateProduct = $pd->ProductEdit($_POST, $_FILES, $product_id, $OldImageLink);
+        $jsonupdate = $pd->ProductJsonUpdate();
 
       } 
     } 
@@ -32,7 +32,7 @@
   if($msg == 'success') :
   ?>
   toastr.success('<?php echo "Product Updated To Database Success" ?>', 'Confirmation Message');
-  
+  toastr.warning('<?php echo $jsonupdate; ?>', 'JSON update');
 
   <?php 
       else: 

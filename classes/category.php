@@ -20,7 +20,7 @@
 				$catInsert = $this->db->insert($query);
 				if($catInsert){
 					$err['success'] = "success";
-					header('Refresh: 3; url=category-list.php');
+					header('Refresh: 1; url=category-list.php');
 				}else{
 					$err['error'] = "Error";
 				}

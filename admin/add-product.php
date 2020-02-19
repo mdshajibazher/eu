@@ -13,6 +13,7 @@
   $pd = new Product;
   if(isset($_POST['submit'])){
         $insertProduct = $pd->productInsert($_POST, $_FILES);
+        $jsonupdate = $pd->ProductJsonUpdate();
 
     }
 ?>
@@ -26,7 +27,7 @@
   ?>
       
   toastr.success('<?php echo "Product Inserted To Database Success" ?>', 'Confirmation Message');
-
+  toastr.warning('<?php echo $jsonupdate; ?>', 'JSON update');
   <?php 
       else: ?>
     toastr.error('<?php echo $msg; ?>','Error Notification');

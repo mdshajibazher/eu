@@ -38,7 +38,7 @@
 		    if($productName == NULL){
                     $err['product_name'] = 'ProductName field Must Not be empty';
 
-             }elseif(strlen($productName) > 10){
+             }elseif(strlen($productName) > 15){
                     $err['product_name'] = 'Productname must not be greater than 10 charecter';
 
              }
@@ -138,7 +138,7 @@
 		    if($productName == NULL){
                     $err['product_name'] = 'ProductName field Must Not be empty';
 
-             }elseif(strlen($productName) > 10){
+             }elseif(strlen($productName) > 15){
                     $err['product_name'] = 'ProductName Cant be greater than 10 charecter';
 
              }
@@ -197,6 +197,41 @@
 
 
 		    return $err;
+	}
+
+
+
+	public function getSearchedProduct($name){
+		$query = "SELECT * FROM product_table WHERE productname LIKE '%$name%'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	// Json Product Update
+
+	public function ProductJsonUpdate(){
+		$query = "SELECT productid,productname FROM product_table";
+		$result = $this->db->select($query);
+    if($result){
+	while($row = $result->fetch_assoc()){
+		$productData[] = array(
+
+				'name' => $row['productname'],
+				'id' => $row['productid'],
+		);
+	}
+
+	$productData =  json_encode($productData);
+	$product_json_file = '../product.json';
+	if(file_put_contents($product_json_file, $productData)){
+		$msg = "Product.json File Updated Successfully";
+	}else{
+		$msg = "There Is some Error";
+	}
+	return $msg;
+
+    }
+
 	}
 
 	public function getPaymentMode(){

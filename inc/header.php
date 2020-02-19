@@ -17,44 +17,32 @@
 ?>
 
 <!doctype html>
-<html lang="en-us">
-
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  
-  <title>Eu e-Canteen</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="manifest" href="site.webmanifest">
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="description" content="Eu E-Canteen">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#fafafa">
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
   <!--Fontawesome Css-->
   <link rel="stylesheet" href="css/font-awesome.css">
-  <!--Bootstrap  Css-->
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <!-- Easy Auto Complete Css -->
+  <link rel="stylesheet" href="css/easy-autocomplete.min.css">
   <!--Bootstrap Datepicker Css-->
   <link rel="stylesheet" href="css/bootstrap-datepicker.css">
   <!--Animate Css-->
   <link rel="stylesheet" href="css/animate.css">
+    <!--Bootstrap  Css-->
+  <link rel="stylesheet" href="css/bootstrap.css">
   <!--Style Css-->
   <link rel="stylesheet" href="style.css">
    <!-- Responsive css -->
   <link rel="stylesheet" href="responsive.css">
-  <meta name="theme-color" content="#fafafa">
+  <title>Eu e-Canteen</title>
 </head>
 
 <body>
-
-    <div class="float-information">
-      <?php 
-      if(isset($_SESSION['custom_order_date'])){
-         echo "Order For: ".$_SESSION['custom_order_date'];
-      }else{
-        echo "No Date Selected";
-      }
-
-      ?>
-    </div>
 
     <div class="container-fluid" >
       <div class="header-area" id="sticker">
@@ -71,19 +59,33 @@
               <a href="#" class="" id="basket" data-toggle="modal" data-target="#cart" ><i class="fa fa fa-cart-plus" ></i> <span class="total-count"></span></a>
             </div>
            </div>
+          <div class="col-md-2">
+            <div class="order-date-badge">
+                <span class="badge badge-warning">
+              <?php 
+              if(isset($_SESSION['custom_order_date'])){
+                 echo "Order For: ".$_SESSION['custom_order_date'];
+              }else{
+                echo "No Date Selected";
+              } ?>
+            </span>
+            </div>
 
-           <div class="col-md-6">
+          </div>
+           <div class="col-md-4 col-xs-2">
+              <form action="search.php" method="GET">
                 <div class="search-box">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Food">
+                    <input id="search" type="text" class="form-control" name="s" placeholder="Search Food">
                     <div class="input-group-append">
-                      <button class="btn btn-secondary" type="button">
+                      <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
                       </button>
 
                     </div>
                   </div>
                 </div>
+                </form>
            </div>
       </div>
     <div class="row">

@@ -27,12 +27,19 @@
         top: -81px;
         right: 35px;
     }
+    .order-date-badge{
+        line-height: 10px;
+        text-align: center;
+    }
     .cart-item-count a span {
     	left: 50%;
     	margin-left: -11px;
      }
      .search-box{
-        margin-bottom: 0px;
+        margin: 0;
+        padding: 0 10px;
+        float: none;
+
      }
     .menu-area{
         background: none;
@@ -75,8 +82,16 @@
     }
 
     .search-box .input-group{
-        padding: 0px 10px;
+        padding: 0;
         margin: 10px 0;
+       
+    }
+    .search-box .input-group .easy-autocomplete{
+         width: 85% !important;
+    }
+    .Product-Area{
+        padding: 0px 40px;
+        margin: 50px 0;
     }
     .single-product{
         padding: 0;
@@ -109,7 +124,10 @@
         font-size: 12px;
     }
     .btn-custom{
-        padding: 7px 13px;
+        padding: 6px 8px;
+    }
+    a.btn-details{
+        font-size: 17px;
     }
 
 }

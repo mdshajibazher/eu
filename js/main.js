@@ -74,7 +74,24 @@ $('#orderDate input').datepicker({
 });
 
 
+var options = {
 
+  url: "product.json",
+
+  getValue: "name",
+
+  list: {
+    match: {
+      enabled: true
+    }
+  },
+
+  theme: "square"
+};
+
+$("#search").easyAutocomplete(options);
 
 
 })(jQuery);
+
+
