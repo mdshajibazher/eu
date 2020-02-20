@@ -86,12 +86,18 @@
 
     public function StorePayment($id, $amount){
     	$current_timestamp = time();
-    	$query = "UPDATE item_sold SET amount ='$amount',paymentAt='$current_timestamp', payment_status=1 WHERE order_id='$id'";
-		$result = $this->db->update($query);
-		if($result){
-		   $msg = "Payment Submitted Successfully";
-		   return $msg;
-		}
+    	if($amount == NULL){
+    		$msg = 'error';
+    	}else{
+	    	$query = "UPDATE item_sold SET amount ='$amount',paymentAt='$current_timestamp', payment_status=1 WHERE order_id='$id'";
+			$result = $this->db->update($query);
+			if($result){
+			   $msg = "Payment Submitted Successfully";
+			   
+			}
+    	}
+    	return $msg;
+    	
 		
     }
 

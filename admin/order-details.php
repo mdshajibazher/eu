@@ -82,17 +82,22 @@ endif;  ?>
  ?>
 
 <?php
-  if(isset($msg)) :  
+  if(isset($msg)) :
+ 
   ?>
 
-<script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"5000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"};
+<script type="text/javascript">toastr.options = {"closeButton":true,"debug":false,"newestOnTop":true,"progressBar":true,"positionClass":"toast-top-right","preventDuplicates":false,"onclick":null,"showDuration":"300","hideDuration":"1000","timeOut":"5000","extendedTimeOut":"1000","showEasing":"swing","hideEasing":"linear","showMethod":"fadeIn","hideMethod":"fadeOut"}; 
+<?php   if($msg == 'error') :  ?>
 
+  toastr.error('<?php echo 'Amount Field Must Not Be Empty' ?>', 'Validation Error');
 
+  <?php else : ?>
       
   toastr.success('<?php echo $msg; ?>', 'Confirmation Message');
-
+<?php endif; ?>
 </script>
   <?php
+     
       endif;
   ?>
 
@@ -245,8 +250,8 @@ endif;  ?>
                       </tr>
                       <tr>
                         <th>Payment:</th>
-                        <td>Tk. <?php if($result['amount'] == NULL){ 
-                        	echo 0; 
+                        <td>Tk. <?php if($result['amount'] == 0){ 
+                        	echo $result['amount']; 
                         }
                         else{ echo $result['amount']."&nbsp; (".date("d/m/Y g:i a",$result['paymentAt']).")";  
                          } ?>
