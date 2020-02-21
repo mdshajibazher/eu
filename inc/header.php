@@ -76,7 +76,7 @@
               <form action="search.php" method="GET">
                 <div class="search-box">
                   <div class="input-group">
-                    <input id="search" type="text" class="form-control" name="s" placeholder="Search Food">
+                    <input id="search" type="text" value="<?php if(isset($_GET['s'])){ echo $_GET['s']; } ?>" class="form-control" name="s" placeholder="Search Food" autofocus>
                     <div class="input-group-append">
                       <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>

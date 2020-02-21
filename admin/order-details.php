@@ -40,6 +40,17 @@ endif;
 
 
 
+<?php if(isset($_POST['serve_marking'])) : 
+
+  if($_POST['served'] == 'served' ) :
+      $MasrkAsServed = $order->MasrkAsServed($order_id);
+      if(isset($MasrkAsServed)){
+        $msg = $MasrkAsServed;
+      }
+    endif;
+
+endif;  ?>
+
 
 
 <?php if(isset($_POST['approval_submit'])) : 
@@ -167,6 +178,17 @@ endif;  ?>
                   
                   <br>
 				 <b>Payment Status: <?php  echo $order->PaymentStatus($result['payment_status']); ?></b><br>
+         <b>Expected Serve Date: <span class="badge badge-info"><?php  echo $result['custom_order_date']; ?></span></b><br>
+         <b>Serve Status: <?php if($result['servedAt'] == NULL){ ?>
+
+          <span class="badge badge-warning">pending</span></b><br><br>
+
+         <?php  }else{ ?>
+
+          <span class="badge badge-success">served</span> &nbsp; &nbsp;At <?php echo date("d/m/Y g:i a",$result['servedAt']); ?></b><br><br><br>
+
+         <?php } ?> 
+         
 
                   
                 </div>
@@ -221,9 +243,13 @@ endif;  ?>
                 <div class="col-6">
                   <p class="lead">Payment Methods:</p>
 
-                  <p class="well well-sm shadow-none payment" style="margin-top: 10px;">
-                   <?php echo $result['mode']; ?> <i class="fa fa-money-bill-alt"></i>
-                  </p>
+                  <h3 class="well well-sm shadow-none payment" style="margin-top: 10px;">
+                   <?php echo $result['mode']; ?> 
+                  </h3>
+                  <img style="width: 150px" src="dist/cod.jpg" alt="">
+
+                  <h3>Order Notes:</h3><span class="badge"><?php echo $result['notes']; ?> </span>
+                  
                 </div>
                 <!-- /.col -->
                 <div class="col-6">
@@ -309,6 +335,14 @@ endif;  ?>
                 <div class="col-12">
                   <!-- Pending  -->
                   <?php if($result['order_status'] == 0) : ?>
+
+
+                  <form action="" method="POST">
+                  <input type="hidden" name="cancel" value="cancel">
+                  <button type="submit" class="btn btn-danger float-right" name="cancel_submit" style="margin-right: 5px;">
+                     Cancel &nbsp;<i class="fas fa-times"></i>
+                  </button>
+                  </form>
                   
                   <form action="" method="POST">
                   <input type="hidden" name="approval" value="approved">
@@ -332,15 +366,35 @@ endif;  ?>
                      Cancel &nbsp;<i class="fas fa-times"></i>
                   </button>
                   </form>
-                  
+
+                  <?php elseif($result['payment_status'] == 1) : ?>
+
+                  <?php if($result['servedAt'] !== NULL) : ?>
+
+
+                   <button type="submit" class="btn btn-success float-right" name="serve_marking" style="margin-right: 5px;" disabled>
+                     served <i class="fa fa-check-circle"></i>
+                  </button>
+
+
+
+                  <?php else:  ?>
+
+                    <form action="" method="POST">
+                  <input type="hidden" name="served" value="served">
+                   <button type="submit" class="btn btn-info float-right" name="serve_marking" style="margin-right: 5px;" >
+                     Mark As Served ?
+                  </button>
+                  </form>
+
+                  <?php endif; ?>
+    
                   <?php endif; ?>
                   
-                  
+                    
                     <button type="button" class="btn btn-success float-right" style="margin-right: 5px;" disabled>
                      Approved <i class="fas fa-check-circle"></i>
                   </button>
-                  
-
                   
                   
                   <?php elseif($result['order_status'] == 2) : ?>

@@ -84,9 +84,10 @@ var options = {
     match: {
       enabled: true
     },
-    onClickEvent: function() {
+    onLoadEvent: function() {
       var itemName = $("#search").val();
       window.location = 'search.php?s='+itemName;
+
     }
   },
 
@@ -94,8 +95,8 @@ var options = {
 };
 
 $("#search").easyAutocomplete(options);
+$("#search").focus();
+
 
 
 })(jQuery);
-
-

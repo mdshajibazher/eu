@@ -44,19 +44,19 @@
     }
 
     public function getOrderInformation(){
-	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id";
+	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id ORDER BY item_sold.id DESC";
 		$result = $this->db->select($query);
 		return $result;
     }
 
 
     public function getPendingOrderInformation(){
-	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_status=0";
+	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_status=0 ORDER BY item_sold.id DESC";
 		$result = $this->db->select($query);
 		return $result;
     }
     public function getCancelOrderInformation(){
-	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_status=2";
+	    $query = "SELECT item_sold.*,students_table.name,students_table.phone, students_table.address, payment_mode.*, serve_hour.* FROM item_sold JOIN students_table JOIN payment_mode JOIN serve_hour WHERE item_sold.user_id=students_table.id AND item_sold.payment_mode=payment_mode.id AND item_sold.serve_hour=serve_hour.id AND item_sold.order_status=2 ORDER BY item_sold.id DESC";
 		$result = $this->db->select($query);
 		return $result;
     }
@@ -82,6 +82,17 @@
 		   return $msg;
 		}
 		
+    }
+
+    public function MasrkAsServed($id){
+        $current_timestamp = time();
+        $query = "UPDATE item_sold SET servedAt ='$current_timestamp', delivery_status='served' WHERE order_id='$id'";
+        $OrderStatus = $this->db->update($query);
+        if($OrderStatus){
+           $msg = "Your Order Has Been Mark As Served";
+           return $msg;
+        }
+        
     }
 
     public function StorePayment($id, $amount){

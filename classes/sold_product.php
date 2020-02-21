@@ -21,7 +21,7 @@
 			return $result;
 		}
 		public function getAllSoldItem($id){
-			$query = "SELECT * FROM item_sold WHERE user_id='$id'";
+			$query = "SELECT * FROM item_sold WHERE user_id='$id' ORDER BY id DESC";
 			$result = $this->db->select($query);
 			return $result;
 		}

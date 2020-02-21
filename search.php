@@ -8,10 +8,24 @@ $pd_name = $_GET['s'];
       <div class="Product-Area">
         <div class="section-title"><span>Serach Result For "<?php echo $pd_name ?>"</span></div>
         <div class="row">
+
+        <?php if($pd_name == NULL) : ?>
+            <div class="item-404">
+              <h1 class="display-5 text-center">404 Oops! You Dont Type Anything</h1>
+              <p class="text-muted">
+                We could not find the product you were looking for.
+                Meanwhile, you may  return to <a href="index.php">Homepage</a> or try amother on the search form.</p>
+              </div>
+              </div>
+
+
+        <?php else:  ?>
+
+
+        
           <?php
           $getSearchedProduct = $pd->getSearchedProduct($pd_name);
           if($getSearchedProduct){
-          $i=0;
           while($result=$getSearchedProduct->fetch_assoc()){
           ?>
           <!-- Single Product Card -->
@@ -37,12 +51,18 @@ $pd_name = $_GET['s'];
               </div>
               <?php  } ?>
             </div>
+
+
+        <?php endif; ?>
+
+
             <!-- Cart  Modal -->
             <?php include('components/cart-modal.php'); ?>
           </div>
         </div>
         <!-- End col-md-9  -->
         <div class="col-md-3">
+          <?php include('components/sidebar-category.php');  ?>
         </div>
       </div>
     </div>
@@ -52,3 +72,4 @@ $pd_name = $_GET['s'];
     }
     ?>
     <?php include 'inc/footer.php'; ?>
+

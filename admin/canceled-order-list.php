@@ -49,20 +49,18 @@
  
             <div class="row">
                 <div class="col-sm-12">
-                    <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                  <table id="example1" class="table table-bordered table-striped dataTable" data-order='[[ 1, "desc" ]]' role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr role="row">
-                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 5%;">Order Id</th>
-                                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 5%;">Order Date</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 10%">Student Name</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 7%">Phone</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 10%">Serve Date</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 5%">Serve Hour</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 5%">Order Status</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 10%;">Payment Mode</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 5%">Payment Status</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 5%">Serve Status</th>
-                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 15%">Action</th>
+                                <th aria-sort="descending" aria-label="Rendering engine: activate to sort column ascending"  style="width: 5%;">Order Id</th>
+                                <th style="width: 20%;">Order Date</th>
+                                <th  style="width: 20%">Student Name</th>
+                                <th style="width: 10%">Phone</th>
+                                <th  style="width: 20%">Serve Date</th>
+                                <th  style="width: 5%">Order Status</th>
+                                <th style="width: 5%">Payment Status</th>
+                                <th style="width: 5%">Serve Status</th>
+                                <th  style="width: 10%">Action</th>
 
                             </tr>
                         </thead>
@@ -72,7 +70,6 @@
                             if($getOrder){
                             while($result=$getOrder->fetch_assoc()) {
                          ?>
-                            
 
                         <tr role="row" class="odd">
   
@@ -80,9 +77,7 @@
                             <td><?php $order_timestamp = strtotime($result['purchaseAt']); echo date('d/m/y g:i a',$order_timestamp);?></td>
                             <td><?php echo $result['name'];  ?></td>
                             <td><?php echo $result['phone'];  ?></td>
-                            <td><?php echo $result['custom_order_date'];  ?></td>
-
-                            <td><?php echo $result['period'];  ?></td>
+                            <?php echo $result['custom_order_date'];  ?>(<?php echo $result['period'];  ?>)
 
                             <td><?php if($result['order_status'] == 0){ echo '<span class="badge bg-warning">pending</span>'; }elseif($result['order_status'] == 1){ echo '<span class="badge bg-success">Approved</span>'; }else{
                                 
@@ -92,11 +87,10 @@
                             
                             ?></td>
 
-                            <td ><?php echo $result['mode']; ?></td>
-
+                          
                             <td><?php if($result['payment_status'] == 0){ echo '<span class="badge bg-danger">unpaid</span>'; }else{ echo '<span class="badge bg-success">paid</span>'; }  ?></td>
 
-                            <td><?php if($result['delivery_status'] == 0){ echo '<span class="badge bg-warning">pending</span>'; }else{ echo '<span class="badge bg-success">served</span>'; }  ?></td>
+                            <td><td><?php echo $result['delivery_status'] ?></td></td>
 
                             <td><a class="btn btn-info btn-sm" href="order-details.php?id=<?php echo $result['order_id']; ?>"><i class="fa fa-eye"></i></a></td>
                           </tr>
@@ -113,9 +107,7 @@
                                 <th rowspan="1" colspan="1">Student Name</th>
                                 <th rowspan="1" colspan="1">Phone</th>
                                 <th rowspan="1" colspan="1">Serve Date</th>
-                                <th rowspan="1" colspan="1">Serve Hour</th>
                                 <th rowspan="1" colspan="1">Order Status</th>
-                                <th rowspan="1" colspan="1">Payment Mode</th>
                                 <th rowspan="1" colspan="1">Payment Status</th>
                                 <th  rowspan="1" colspan="1" >Serve Status</th>
                                 <th  rowspan="1" colspan="1" >Action</th>
