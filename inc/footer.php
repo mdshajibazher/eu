@@ -35,6 +35,7 @@
   <script src="js/moment.js"></script>
   <script src="js/bootstrapdatepicker.js"></script>
   <script src="js/jquery.easy-autocomplete.min.js"></script>
+  <script src="js/jquery.simple-text-rotator.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
 

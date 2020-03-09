@@ -89,6 +89,12 @@
     .search-box .input-group .easy-autocomplete{
          width: 85% !important;
     }
+    .text-rotate-box {
+        width: 85%;
+        font-size: 12px;
+        padding: 8px 10px;
+        margin-left: 0px;
+    }
     .Product-Area{
         padding: 0px 40px;
         margin: 50px 0;

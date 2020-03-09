@@ -12,7 +12,7 @@ $(document).ready(function(){
 });
 
 
-//payment method
+//add to card
   $(document).ready(function(){
 
   $(".add-to-cart.btn").click(function(){
@@ -35,7 +35,20 @@ $('#orderDate input').datepicker({
 
  $("#sticker").sticky({topSpacing:0});
 
+//Text Rotator 
 
+ $(".rotate").textrotator({
+  animation: "dissolve", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
+  separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
+  speed: 1000 // How many milliseconds until the next word show.
+});
+
+
+ $(".text-rotate-box").click(function(){
+    $(this).hide();
+    $('#search').show();
+    $("#search").focus();
+  });
 
 
 
@@ -79,23 +92,30 @@ var options = {
   url: "product.json",
 
   getValue: "name",
+  template: {
+        type: "description",
+        fields: {
+            description: "price"
+        }
+    },
 
   list: {
     match: {
       enabled: true
     },
-    onLoadEvent: function() {
+    onChooseEvent: function() {
       var itemName = $("#search").val();
       window.location = 'search.php?s='+itemName;
 
     }
   },
 
-  theme: "square"
+  theme: "round"
 };
 
 $("#search").easyAutocomplete(options);
-$("#search").focus();
+
+setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
 
 
 

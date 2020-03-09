@@ -210,7 +210,7 @@
 	// Json Product Update
 
 	public function ProductJsonUpdate(){
-		$query = "SELECT productid,productname FROM product_table";
+		$query = "SELECT productid,productname,price FROM product_table";
 		$result = $this->db->select($query);
     if($result){
 	while($row = $result->fetch_assoc()){
@@ -218,6 +218,7 @@
 
 				'name' => $row['productname'],
 				'id' => $row['productid'],
+				'price' => $row['price']." Tk",
 		);
 	}
 

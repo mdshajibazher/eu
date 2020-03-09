@@ -27,6 +27,8 @@
   <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
   <!--Fontawesome Css-->
   <link rel="stylesheet" href="css/font-awesome.css">
+  <!-- Easy Auto Complete Theme Css -->
+  <link rel="stylesheet" href="css/easy-autocomplete.themes.css">
   <!-- Easy Auto Complete Css -->
   <link rel="stylesheet" href="css/easy-autocomplete.min.css">
   <!--Bootstrap Datepicker Css-->
@@ -43,6 +45,23 @@
 </head>
 
 <body>
+  <!-- Page Loader -->
+     <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
 
     <div class="container-fluid" >
       <div class="header-area" id="sticker">
@@ -76,7 +95,18 @@
               <form action="search.php" method="GET">
                 <div class="search-box">
                   <div class="input-group">
-                    <input id="search" type="text" value="<?php if(isset($_GET['s'])){ echo $_GET['s']; } ?>" class="form-control" name="s" placeholder="Search Food" autofocus>
+                    <input  id="search" type="text" value="" class="form-control" name="s" placeholder="Search Food...." autofocus>
+                    <div class="text-rotate-box">
+                      Search Anything eg:.. <span class="rotate"><?php
+          $getProduct = $pd->getAllProduct();
+          if($getProduct){
+          $i=0;
+          while($result=$getProduct->fetch_assoc()){
+          ?>
+        <?php echo $result['productname']; ?>,
+        <?php }} ?></span>
+                    </div>
+                    
                     <div class="input-group-append">
                       <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>

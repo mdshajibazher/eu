@@ -37,9 +37,9 @@ $pd_name = $_GET['s'];
               <img class="card-img-top img-thumbnail" src="admin/<?php echo $result['image']; ?>" alt="Card image cap">
               <h4><?php echo $result['productname']; ?></h4>
               <p><?php echo $result['description']; ?></p>
-              <div class="link">
+              <div class="link mb-5">
                 <h4>Tk <?php echo $result['price']; ?></h4>
-                <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-success">Add to cart</a>
+                <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
               </div>
             </div>
             <?php } }else{ ?>
