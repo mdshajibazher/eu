@@ -24,8 +24,11 @@
     .cart-item-count{
         float: none;
         position: absolute;
-        top: -81px;
-        right: 35px;
+        top: 69px;
+        width: 100%;
+        text-align: center;
+        margin-left: -23px;
+        z-index: 2;
     }
     .order-date-badge{
         line-height: 10px;
@@ -36,14 +39,16 @@
     	margin-left: -11px;
      }
      .search-box{
-        margin: 0;
+        margin-right: 0;
+        margin-left: 10px;
         float: none;
+        margin-bottom: 84px;
 
      }
      .information{
         position: absolute;
-        margin: 32px 0;
-        top: 48px;
+        margin: 0;
+        top: 89px;
         z-index: 2;
         padding: 5px 9px;
         left: 27px;

@@ -197,7 +197,6 @@ font-weight: bold
 }
 
 .cart-item-count {
-  float: right;
   text-align: center;
 }
 .cart-item-count a {
@@ -222,7 +221,7 @@ font-weight: bold
   text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
 }
 .cart-item-count a span{
-    left: 7px;
+    left: 23px;
     position: absolute;
     top: -13px;
     width: 31px;
