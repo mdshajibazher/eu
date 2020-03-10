@@ -68,6 +68,12 @@ body{
 .wrapper-bg{
   background: #fff;
 }
+.information{
+  margin: 25px 0;
+  background: red;
+  color: #fff;
+  padding: 10px 5px;
+}
 /*----------------------------------------------------
 Header Area
 ----------------------------------------------------*/

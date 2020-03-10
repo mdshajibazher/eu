@@ -37,9 +37,16 @@
      }
      .search-box{
         margin: 0;
-        padding: 0 10px;
         float: none;
 
+     }
+     .information{
+        position: absolute;
+        margin: 32px 0;
+        top: 48px;
+        z-index: 2;
+        padding: 5px 9px;
+        left: 27px;
      }
     .menu-area{
         background: none;

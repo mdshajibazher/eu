@@ -66,12 +66,19 @@
     <div class="container-fluid" >
       <div class="header-area" id="sticker">
       <div class="row">
-           <div class="col-md-5">
+           <div class="col-md-4">
               <div class="main-wrapper">
                   <div class="banner">
                    <img src="img/banner.png" alt="">
                  </div>
               </div>
+           </div>
+           <div class="col-md-1">
+                <span class="badge information">Welcome,<br>
+              <?php echo $_SESSION['name'] ?></span>      
+                
+          
+
            </div>
            <div class="col-md-1">
              <div class="cart-item-count animated">
