@@ -29,7 +29,7 @@ $id = $_GET['id'];
             <p><?php echo $result['description']; ?></p>
             <div class="link">
               <h4>Tk <?php echo $result['price']; ?></h4>
-              <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-success">Add to cart</a>
+              <a href="#" data-name="<?php echo $result['sku']; ?>" data-id="<?php echo $result['productid']; ?>" data-price="<?php echo $result['price']; ?>" class="add-to-cart btn btn-custom">Add to cart</a>
             </div>
             
           </div>

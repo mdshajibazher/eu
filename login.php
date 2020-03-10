@@ -39,18 +39,20 @@ $loginChk = $sl->Studentlogin($id, $pass,$date,$serve_hour);
           
           <img src="img/banner.png" width="100%">
           <span style="color:red"><?php if(isset($loginChk['login_msg'])){ echo $loginChk['login_msg']; } ?> </span>
-
-          <input type="text" class="form-control" placeholder="email/studentid" name="id" value="<?php if(isset($_POST['id'])){ echo $_POST['id']; }else{ echo "user"; } ?>" />
-          <input type="password" class="form-control" placeholder="password" name="pass" value="user" />
+          <label for="id">Email/Student Id</label>
+          <input type="text" class="form-control" placeholder="email/studentid" name="id" id="id" value="<?php if(isset($_POST['id'])){ echo $_POST['id']; }else{ echo "user"; } ?>" />
+          <label for="password">Pasword</label>
+          <input type="password" class="form-control" placeholder="password" id="password" name="pass" value="user" />
           
           <div id="orderDate" style="overflow: hidden;">
-            <input type="text" id="date" class="form-control" value="<?php if(isset($date)){ echo $date; }else{ echo date('d-m-Y');} ?>" name="datepicker" placeholder="Enter Date Of Order" data-date-start-date="0d" readonly>
+            <label for="date">Order Date</label>
+            <input type="text" id="date" class="form-control"  value="<?php if(isset($date)){ echo $date; }else{ echo date('d-m-Y');} ?>" name="datepicker" placeholder="Enter Date Of Order" data-date-start-date="0d" readonly>
           <?php if(isset($loginChk['date'])){
           echo $loginChk['date'];
           } ?>
           </div>
-          
-          <select class="form-control" id="exampleFormControlSelect2" name="serve_hour">
+          <label for="s_hour">Serve Hour</label>
+          <select class="form-control" id="exampleFormControlSelect2" name="serve_hour" id="s_hour">
             <option value="0">-----select Serve Hour-----</option>
             <?php
             $getServeHour = $pd->getServeHour();
