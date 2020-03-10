@@ -97,16 +97,8 @@
                   <div class="input-group">
                     <input  id="search" type="text" value="" class="form-control" name="s" placeholder="Search Food...." autofocus>
                     <div class="text-rotate-box">
-                      Search Anything eg:.. <span class="rotate"><?php
-          $getProduct = $pd->getAllProduct();
-          if($getProduct){
-          $i=0;
-          while($result=$getProduct->fetch_assoc()){
-          ?>
-        <?php echo $result['productname']; ?>,
-        <?php }} ?></span>
+
                     </div>
-                    
                     <div class="input-group-append">
                       <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
